@@ -1,12 +1,13 @@
-# PDFs and raw data (too large for git)
+# Build output
+.next/
+node_modules/
+
+# Raw extraction files (not needed for deployment)
 pdfs/
 questions_raw.json
 extract_pdfs.py
 
-# Node modules
-chemistry-pyqs/node_modules/
-chemistry-pyqs/.next/
-
 # Misc
 *.pyc
 __pycache__/
+.DS_Store
