@@ -16,6 +16,12 @@ export default function SearchBar({ value, onChange, onMenuToggle, chapterName }
 
   return (
     <div className="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-gray-200">
+      {/* Built by tag — visible on mobile only (sidebar hidden on mobile) */}
+      <div className="lg:hidden flex justify-center pt-2">
+        <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-sm">
+          ✦ Built by Abilash V
+        </span>
+      </div>
       <div className="flex items-center gap-3 px-4 py-3">
         <button
           onClick={onMenuToggle}

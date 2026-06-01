@@ -128,8 +128,13 @@ export default function Sidebar({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-100 bg-gray-50">
+        <div className="p-4 border-t border-gray-100 bg-gray-50 space-y-2">
           <p className="text-xs text-gray-400 text-center">2013–2025 • CBSE Board Papers</p>
+          <div className="flex justify-center">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-sm">
+              ✦ Built by Abilash V
+            </span>
+          </div>
         </div>
       </aside>
     </>
