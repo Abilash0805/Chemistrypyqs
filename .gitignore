@@ -11,3 +11,4 @@ extract_pdfs.py
 *.pyc
 __pycache__/
 .DS_Store
+answers_out/
