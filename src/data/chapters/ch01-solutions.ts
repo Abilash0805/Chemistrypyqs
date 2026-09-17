@@ -294,7 +294,7 @@ export const CH01: Question[] = [
     correct: 2,
     answer: [
       {
-        text: "**(c) A is true but R is false.** Elevation of boiling point does depend only on the number of solute particles, so it *is* a colligative property. But it is proportional to **molality**, not molarity:",
+        text: "**(c) A is true but R is false.** Elevation of boiling point does depend only on the number of solute particles, so it _(is)_ a colligative property. But it is proportional to **molality**, not molarity:",
       },
       { equation: "$\\Delta T_b = K_b \\times m$" },
       {

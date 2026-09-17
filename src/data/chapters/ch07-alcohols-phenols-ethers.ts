@@ -634,7 +634,7 @@ export const CH07: Question[] = [
       { equation: "2C2H5OH ->[conc. H2SO4][413 K] C2H5–O–C2H5 + H2O" },
       { equation: "C2H5–O–C2H5 + 2HI ->[excess] 2C2H5I + H2O" },
       {
-        text: "**Note the temperature:** conc. H2SO4 at **413 K** gives the ether (intermolecular dehydration), but at **443 K** it would give ethene instead. With *excess* HI both C–O bonds of the ether are cleaved, so two moles of iodoethane result.",
+        text: "**Note the temperature:** conc. H2SO4 at **413 K** gives the ether (intermolecular dehydration), but at **443 K** it would give ethene instead. With _(excess)_ HI both C–O bonds of the ether are cleaved, so two moles of iodoethane result.",
       },
     ],
   },
@@ -666,7 +666,7 @@ export const CH07: Question[] = [
       },
       {
         label: "(b)(ii)",
-        text: "An alcohol has an O–H hydrogen and so forms strong intermolecular hydrogen bonds. An **ether has no O–H**, so although its oxygen can accept a hydrogen bond, ether molecules cannot bond to *each other* — only weak dipole–dipole forces operate. Hence ethanol boils at 351 K and its isomer methoxymethane at 249 K.",
+        text: "An alcohol has an O–H hydrogen and so forms strong intermolecular hydrogen bonds. An **ether has no O–H**, so although its oxygen can accept a hydrogen bond, ether molecules cannot bond to _(each other)_ — only weak dipole–dipole forces operate. Hence ethanol boils at 351 K and its isomer methoxymethane at 249 K.",
       },
       {
         label: "(b)(iii)",

@@ -153,7 +153,7 @@ export const CH06: Question[] = [
         text: "**(d) Vinyl halide.** In CH2=CH–Cl the carbon bearing the halogen is part of the double bond and is therefore **sp² hybridised**. (Aryl halides such as chlorobenzene are the other sp² case.)",
       },
       {
-        text: "In allyl (CH2=CH–CH2–X) and benzyl (C6H5–CH2–X) halides the halogen sits on an **sp³** carbon *next to* the unsaturation — which is why they are highly reactive, unlike vinyl and aryl halides.",
+        text: "In allyl (CH2=CH–CH2–X) and benzyl (C6H5–CH2–X) halides the halogen sits on an **sp³** carbon _(next to)_ the unsaturation — which is why they are highly reactive, unlike vinyl and aryl halides.",
       },
       { figure: { kind: "named", id: "allyl-vinyl-benzyl" } },
     ],

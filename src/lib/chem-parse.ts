@@ -307,7 +307,10 @@ function applySymbols(s: string): string {
 export function parseChem(input: string): ChemNode[] {
   if (!input) return [];
   const nodes: ChemNode[] = [];
-  const re = /\$([^$]+)\$|\*\*([^*]+)\*\*|_\(([^)]*)\)_|\\\(([^)]*)\\\)/g;
+  // The bold group is non-greedy and allows a bare `*` inside it, because
+  // chemistry content legitimately contains lone asterisks — `CH3–C*H(Cl)–CH2Br`
+  // marks a chiral centre that way.
+  const re = /\$([^$]+)\$|\*\*([\s\S]+?)\*\*|_\(([^)]*)\)_|\\\(([^)]*)\\\)/g;
   let last = 0;
   let m: RegExpExecArray | null;
 

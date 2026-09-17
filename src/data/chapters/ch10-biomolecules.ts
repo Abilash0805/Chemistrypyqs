@@ -294,7 +294,7 @@ export const CH10: Question[] = [
         text: "In **glycine** R = H, so the α-carbon carries two hydrogens — it is not a chiral centre, and glycine is optically inactive.",
       },
       {
-        text: "The reason (that most natural amino acids are L) is a true but separate fact: it tells you *which* enantiomer occurs in nature, not *why* optical activity exists at all.",
+        text: "The reason (that most natural amino acids are L) is a true but separate fact: it tells you _(which)_ enantiomer occurs in nature, not _(why)_ optical activity exists at all.",
       },
     ],
   },

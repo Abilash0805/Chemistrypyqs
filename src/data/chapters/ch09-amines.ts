@@ -66,7 +66,7 @@ export const CH09: Question[] = [
         ],
       },
       {
-        text: "Note the trap: $(\\text{CH}_3)_3\\text{CNH}_2$ has a *tertiary carbon* but is still a **primary amine**, because the nitrogen carries two hydrogens.",
+        text: "Note the trap: $(\\text{CH}_3)_3\\text{CNH}_2$ has a _(tertiary carbon)_ but is still a **primary amine**, because the nitrogen carries two hydrogens.",
       },
     ],
     keyPoint: "Classify amines by the substituents on **nitrogen**, not on carbon.",

@@ -25,8 +25,8 @@ function Block({ block }: { block: AnswerBlock }) {
   return (
     <div className="mt-3 first:mt-0">
       {block.label && (
-        <p className="mb-1 text-[12.5px] font-semibold uppercase tracking-[0.06em] text-[var(--color-primary)]">
-          {block.label}
+        <p className="mb-1 text-[12.5px] font-semibold tracking-[0.02em] text-[var(--color-primary)]">
+          <Chem text={block.label} />
         </p>
       )}
       {block.text && (
