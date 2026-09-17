@@ -1,69 +1,427 @@
 @import "tailwindcss";
+@import "katex/dist/katex.min.css";
 
-:root {
-  --background: #f9fafb;
-  --foreground: #111827;
+/*
+ * Design tokens.
+ *
+ * Palette and motion follow the ui-ux-pro-max design-system recommendation for
+ * an education / study product: a study-purple primary with a "correct green"
+ * accent, soft-clay depth (rounded 16–24px, paired inner + outer shadows,
+ * 200ms press) and a standard-tier stagger on entry. The recommended display
+ * face was swapped for Sora + Fraunces: chemistry sets a lot of subscripts and
+ * superscripts, and a rounded kids' face makes those illegible at small sizes.
+ */
+
+@layer base {
+  :root {
+    --color-primary: #7c3aed;
+    --color-on-primary: #ffffff;
+    --color-secondary: #8b5cf6;
+    --color-accent: #059669;
+    --color-on-accent: #ffffff;
+
+    --color-background: #faf7ff;
+    --color-foreground: #1a1033;
+    --color-card: #ffffff;
+    --color-muted: #f4efFd;
+    --color-muted-foreground: #5b5175;
+    --color-border: #e9e0fa;
+    --color-destructive: #dc2626;
+    --color-ring: #7c3aed;
+
+    /* chemistry figure tokens */
+    --surface: #ffffff;
+    --ink: #1a1033;
+    --ink-muted: #6b6386;
+    --bond: #35284f;
+    --bond-faint: #b9aed3;
+    --atom-metal: #7c3aed;
+    --atom-metal-ink: #ffffff;
+    --atom-ligand: #ede7fb;
+    --atom-ligand-ink: #3a2a5c;
+    --atom-alt: #0d9488;
+    --atom-alt-ink: #ffffff;
+    --atom-ring: #cfc2ea;
+    --plane-fill: #f6f1ff;
+
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --radius-sm: 11px;
+
+    --shadow-clay:
+      0 1px 2px rgb(26 16 51 / 0.05),
+      0 8px 24px -10px rgb(124 58 237 / 0.22),
+      inset 0 1px 0 rgb(255 255 255 / 0.9);
+    --shadow-clay-lg:
+      0 2px 4px rgb(26 16 51 / 0.05),
+      0 20px 48px -18px rgb(124 58 237 / 0.3),
+      inset 0 1px 0 rgb(255 255 255 / 0.95);
+  }
+
+  :root[data-theme="dark"] {
+    --color-background: #100a20;
+    --color-foreground: #f4f1fb;
+    --color-card: #1a1230;
+    --color-muted: #221838;
+    --color-muted-foreground: #a99fc4;
+    --color-border: #2f2350;
+    --color-primary: #a78bfa;
+    --color-on-primary: #17102b;
+    --color-secondary: #8b5cf6;
+    --color-accent: #34d399;
+    --color-on-accent: #06281e;
+    --color-ring: #a78bfa;
+
+    --surface: #1a1230;
+    --ink: #f4f1fb;
+    --ink-muted: #a99fc4;
+    --bond: #d9d1ef;
+    --bond-faint: #5a4b80;
+    --atom-metal: #a78bfa;
+    --atom-metal-ink: #17102b;
+    --atom-ligand: #2c2048;
+    --atom-ligand-ink: #ece6fb;
+    --atom-alt: #34d399;
+    --atom-alt-ink: #06281e;
+    --atom-ring: #43356b;
+    --plane-fill: #221838;
+
+    --shadow-clay:
+      0 1px 2px rgb(0 0 0 / 0.4),
+      0 10px 28px -12px rgb(0 0 0 / 0.65),
+      inset 0 1px 0 rgb(255 255 255 / 0.05);
+    --shadow-clay-lg:
+      0 2px 6px rgb(0 0 0 / 0.45),
+      0 24px 56px -20px rgb(0 0 0 / 0.7),
+      inset 0 1px 0 rgb(255 255 255 / 0.06);
+  }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--color-background);
+  --color-fg: var(--color-foreground);
+  --color-card: var(--color-card);
+  --color-muted: var(--color-muted);
+  --color-muted-fg: var(--color-muted-foreground);
+  --color-line: var(--color-border);
+  --color-brand: var(--color-primary);
+  --color-on-brand: var(--color-on-primary);
+  --color-accent: var(--color-accent);
+  --color-on-accent: var(--color-on-accent);
+  --font-sans: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  -webkit-font-smoothing: antialiased;
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    /* Lenis drives scrolling; native smooth scroll would fight it. */
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Soft radial wash behind everything, tuned per theme. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 40rem at 12% -8%, rgb(124 58 237 / 0.10), transparent 62%),
+      radial-gradient(48rem 34rem at 92% 4%, rgb(5 150 105 / 0.08), transparent 60%);
+  }
+
+  :root[data-theme="dark"] body::before {
+    background:
+      radial-gradient(60rem 40rem at 12% -8%, rgb(139 92 246 / 0.16), transparent 62%),
+      radial-gradient(48rem 34rem at 92% 4%, rgb(52 211 153 / 0.09), transparent 60%);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 26%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Lenis needs the scroll container not to be smooth-scrolled by the browser. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Math text rendering */
-.math-text sub {
-  font-size: 0.75em;
-  vertical-align: sub;
+/* ------------------------------------------------------------------ */
+/* Chemistry typography                                                */
+/* ------------------------------------------------------------------ */
+
+.chem {
+  font-variant-ligatures: none;
+}
+
+.chem sub,
+.chem sup {
+  font-size: 0.7em;
   line-height: 0;
+  font-weight: 600;
+  font-feature-settings: "tnum";
 }
 
-.math-text sup {
-  font-size: 0.75em;
-  vertical-align: super;
-  line-height: 0;
+.chem sub {
+  vertical-align: -0.28em;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+.chem sup {
+  vertical-align: 0.48em;
 }
 
-::-webkit-scrollbar-track {
+.chem-state {
+  font-style: italic;
+  font-size: 0.82em;
+  opacity: 0.78;
+  margin-left: 0.5px;
+}
+
+.chem-arrow {
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+.chem-arrow-stack {
+  vertical-align: middle;
+  transform: translateY(0.1em);
+}
+
+.chem-arrow-label {
+  font-size: 0.68em;
+  line-height: 1.1;
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+}
+
+.chem-equation {
+  margin: 0.85rem 0;
+  padding: 0.7rem 0.95rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.chem-equation-inner {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 0.97rem;
+  font-weight: 500;
+  min-width: 100%;
+}
+
+.chem-math .katex {
+  font-size: 1.03em;
+}
+
+/* Figures ---------------------------------------------------------- */
+
+.chem-figures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 1rem 0;
+}
+
+.chem-figure {
+  margin: 0.9rem 0;
+  padding: 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-clay);
+}
+
+.chem-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  overflow: visible;
+}
+
+/*
+ * On a narrow screen a wide mechanism would otherwise shrink until its atom
+ * labels are unreadable. Below the tablet breakpoint the figure scrolls
+ * sideways instead, keeping the lettering at a legible size.
+ */
+@media (max-width: 639px) {
+  .chem-figure {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chem-svg {
+    min-width: 440px;
+  }
+
+  .chem-figcaption {
+    /* Keep the caption at the reader's width even while the figure scrolls. */
+    position: sticky;
+    left: 0;
+    max-width: 100%;
+  }
+}
+
+.chem-svg-label {
+  font-family: var(--font-sans);
+}
+
+.chem-figcaption {
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--color-border);
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: var(--color-muted-foreground);
+  text-align: left;
+}
+
+.chem-figure-row {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .chem-figure-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.chem-figure-row .chem-figure {
+  margin: 0;
+  box-shadow: none;
+  background: var(--color-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable surfaces                                                   */
+/* ------------------------------------------------------------------ */
+
+.clay {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-clay);
+}
+
+.clay-press {
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms ease-out,
+    background-color 160ms ease-out,
+    border-color 160ms ease-out;
+}
+
+.clay-press:active {
+  transform: translateY(1px) scale(0.995);
+}
+
+.answer-prose p {
+  margin: 0.55rem 0;
+  line-height: 1.72;
+}
+
+.answer-prose strong {
+  font-weight: 650;
+  color: var(--color-foreground);
+}
+
+.answer-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.87rem;
+  margin: 0.85rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.answer-table th,
+.answer-table td {
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.answer-table th {
+  background: var(--color-muted);
+  font-weight: 620;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+}
+
+.answer-table tr:last-child td {
+  border-bottom: none;
+}
+
+.answer-table td + td,
+.answer-table th + th {
+  border-left: 1px solid var(--color-border);
+}
+
+/* Scrollbars ------------------------------------------------------- */
+
+.thin-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 99px;
+}
+.thin-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 10px;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
-}
-
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-none {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Smooth line clamp */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+@media print {
+  body::before,
+  .no-print {
+    display: none !important;
+  }
+  .clay {
+    box-shadow: none;
+    break-inside: avoid;
+  }
 }
