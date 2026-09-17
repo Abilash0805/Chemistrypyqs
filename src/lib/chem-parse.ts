@@ -379,11 +379,15 @@ function markupNodes(token: string): ChemNode[] {
       //   superscript — a charge (`2+`, `−`), a digit run (`3`) or a single
       //     letter with an optional sign (`n+`). Stopping at one digit run is
       //     what makes `sp^3d^2` come out as sp³d² rather than sp^(3d).
-      //   subscript — a word or a digit run, so `S_N2`, `_cell` and `_2g` all work.
+      //   subscript — a word or a digit run, so `S_N2`, `_cell` and `_2g` all
+      //     work. A digit run may be followed only by LOWERCASE letters: that
+      //     keeps orbital labels like `t_2g` together while letting `R_2NH`
+      //     subscript the 2 alone and leave NH on the baseline, since an
+      //     uppercase letter starts a new element or group.
       const bare =
         ch === "^"
           ? rest.match(/^([0-9]*[+\-−]|[0-9]+|[A-Za-z][+\-−]?)/)
-          : rest.match(/^([A-Za-z]+[0-9]*|[0-9]+[A-Za-z]*)/);
+          : rest.match(/^([A-Za-z]+[0-9]*|[0-9]+[a-z]*)/);
       const value = braced?.[1] ?? bare?.[1];
       if (value !== undefined) {
         flush();

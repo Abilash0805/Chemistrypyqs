@@ -3,6 +3,7 @@ import { CH01 } from "./chapters/ch01-solutions";
 import { CH01B } from "./chapters/ch01b-solutions";
 import { CH02 } from "./chapters/ch02-electrochemistry";
 import { CH02B } from "./chapters/ch02b-electrochemistry";
+import { CH02C } from "./chapters/ch02c-electrolysis";
 import { CH03 } from "./chapters/ch03-chemical-kinetics";
 import { CH03B } from "./chapters/ch03b-chemical-kinetics";
 import { CH04 } from "./chapters/ch04-d-and-f-block";
@@ -13,6 +14,7 @@ import { CH05C } from "./chapters/ch05c-cft";
 import { CH06 } from "./chapters/ch06-haloalkanes";
 import { CH06B } from "./chapters/ch06b-haloalkanes";
 import { CH06C } from "./chapters/ch06c-reactions";
+import { CH06D } from "./chapters/ch06d-short";
 import { CH07 } from "./chapters/ch07-alcohols-phenols-ethers";
 import { CH07B } from "./chapters/ch07b-alcohols-phenols-ethers";
 import { CH07C } from "./chapters/ch07c-reactions";
@@ -26,6 +28,7 @@ import { CH09 } from "./chapters/ch09-amines";
 import { CH09B } from "./chapters/ch09b-amines";
 import { CH09C } from "./chapters/ch09c-reactions";
 import { CH09D } from "./chapters/ch09d-reasoning";
+import { CH09E } from "./chapters/ch09e-chains";
 import { CH10 } from "./chapters/ch10-biomolecules";
 import { CH10B } from "./chapters/ch10b-biomolecules";
 import { CH10C } from "./chapters/ch10c-reactions";
@@ -36,6 +39,7 @@ export const QUESTIONS: Question[] = [
   ...CH01B,
   ...CH02,
   ...CH02B,
+  ...CH02C,
   ...CH03,
   ...CH03B,
   ...CH04,
@@ -46,6 +50,7 @@ export const QUESTIONS: Question[] = [
   ...CH06,
   ...CH06B,
   ...CH06C,
+  ...CH06D,
   ...CH07,
   ...CH07B,
   ...CH07C,
@@ -59,6 +64,7 @@ export const QUESTIONS: Question[] = [
   ...CH09B,
   ...CH09C,
   ...CH09D,
+  ...CH09E,
   ...CH10,
   ...CH10B,
   ...CH10C,

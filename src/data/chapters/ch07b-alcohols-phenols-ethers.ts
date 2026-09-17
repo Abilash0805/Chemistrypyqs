@@ -168,7 +168,7 @@ export const CH07B: Question[] = [
       { equations: ["R2C=O + R'MgX ->[dry ether] R2C(OMgX)R'", "R2C(OMgX)R' ->[H3O^+] R2C(OH)R'"] },
       {
         table: [
-          ["Carbonyl compound", "Product with RMgX then H₃O⁺"],
+          ["Carbonyl compound", "Product with R–MgX then H₃O⁺"],
           ["Methanal (HCHO)", "Primary alcohol"],
           ["Any other aldehyde", "Secondary alcohol"],
           ["Ketone", "**Tertiary alcohol**"],
@@ -255,7 +255,7 @@ export const CH07B: Question[] = [
         label: "(i)",
         text: "A **primary** alcohol has two α-hydrogens, so it is oxidised first to the aldehyde and then on to the carboxylic acid:",
       },
-      { equation: "RCH2OH ->[O] RCHO ->[O] RCOOH" },
+      { equation: "R–CH2OH ->[O] R–CHO ->[O] R–COOH" },
       { text: "A **secondary** alcohol has one α-hydrogen, so oxidation stops at the **ketone**:" },
       { equation: "R2CHOH ->[O] R2C=O" },
       {

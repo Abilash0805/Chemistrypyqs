@@ -87,7 +87,7 @@ export const CH06B: Question[] = [
             {},
             { label: "CH2Br", highlight: true },
           ],
-          caption: "1-Bromopentane — a primary halide, fastest by S_N2",
+          caption: "1-Bromopentane — a primary halide, fastest by SN2",
         },
       },
       {

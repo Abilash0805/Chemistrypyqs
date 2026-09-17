@@ -245,7 +245,7 @@ export const CH09B: Question[] = [
         label: "(i)",
         text: "The primary amine formed is **itself a nucleophile — and a better one than ammonia**, because the alkyl group's +I effect enriches the nitrogen lone pair. It therefore attacks a second molecule of alkyl halide, and so on:",
       },
-      { equations: ["R\u2013X + NH3 -> R\u2013NH2 + HX", "R\u2013X + R\u2013NH2 -> R2NH + HX", "R\u2013X + R2NH -> R3N + HX", "R\u2013X + R3N -> R4N^+X^\u2212"] },
+      { equations: ["R\u2013X + NH3 -> R\u2013NH2 + HX", "R\u2013X + R\u2013NH2 -> R_2NH + HX", "R\u2013X + R_2NH -> R_3N + HX", "R\u2013X + R_3N -> R_4N^+X^\u2212"] },
       {
         label: "(ii)",
         text: "Use a **large excess of ammonia**. That makes it statistically far more likely for an alkyl halide molecule to meet ammonia than to meet the amine already formed, so the reaction largely stops at the primary stage.",

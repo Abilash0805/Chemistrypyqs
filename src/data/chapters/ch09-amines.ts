@@ -61,8 +61,8 @@ export const CH09: Question[] = [
         table: [
           ["Class", "Structure", "Example here"],
           ["Primary", "R–NH2", "(CH3)2CHNH2, (CH3)3CNH2, CH3(CH2)2NH2"],
-          ["Secondary", "R2NH", "CH3NHCH(CH3)2 ✓"],
-          ["Tertiary", "R3N", "—"],
+          ["Secondary", "R_2NH", "CH3NHCH(CH3)2 ✓"],
+          ["Tertiary", "R_3N", "—"],
         ],
       },
       {
@@ -566,13 +566,13 @@ export const CH09: Question[] = [
         label: "Primary amine",
         text: "Forms a sulphonamide that still has an N–H. That hydrogen is made acidic by the two adjacent sulphonyl oxygens, so the product **dissolves in KOH**:",
       },
-      { equation: "C6H5SO2Cl + RNH2 -> C6H5SO2NHR + HCl" },
+      { equation: "C6H5SO2Cl + R–NH2 -> C6H5SO2NHR + HCl" },
       { equation: "C6H5SO2NHR + KOH -> C6H5SO2N^−(K^+)R + H2O — soluble" },
       {
         label: "Secondary amine",
         text: "Forms a sulphonamide with **no N–H** left, so it is **insoluble in KOH**:",
       },
-      { equation: "C6H5SO2Cl + R2NH -> C6H5SO2NR2 + HCl — insoluble in alkali" },
+      { equation: "C6H5SO2Cl + R_2NH -> C6H5SO2NR_2 + HCl — insoluble in alkali" },
       {
         label: "Tertiary amine",
         text: "Has no N–H to begin with, so it **does not react at all** — the amine simply remains as an immiscible layer.",
