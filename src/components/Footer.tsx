@@ -8,8 +8,11 @@ export function Footer() {
         <div className="max-w-sm">
           <p className="font-display text-[15px] font-semibold">Chemistry PYQs</p>
           <p className="mt-2 text-[13px] leading-[1.7] text-[var(--color-muted-foreground)]">
-            {STATS.total} previous year questions for CBSE Class 12 Chemistry, scoped to the
-            2026&ndash;27 syllabus and answered to the marking scheme.
+            {/* The space has to be explicit: the JSX transform drops a plain
+                one between an expression and text that wraps to a new line. */}
+            {STATS.total}{" "}
+            previous year questions for CBSE Class 12 Chemistry, scoped to the 2026&ndash;27
+            syllabus and answered to the marking scheme.
           </p>
         </div>
         <nav className="flex flex-wrap gap-x-8 gap-y-2 text-[13px]">

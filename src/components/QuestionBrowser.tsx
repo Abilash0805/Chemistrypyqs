@@ -115,7 +115,7 @@ export function QuestionBrowser({
 
   const pill = (active: boolean) =>
     cn(
-      "clay-press cursor-pointer rounded-xl border px-3 py-1.5 text-[12.5px] font-medium transition-colors",
+      "clay-press min-h-10 cursor-pointer rounded-xl border px-3 py-2 text-[13px] font-medium transition-colors sm:min-h-0 sm:py-1.5 sm:text-[12.5px]",
       active
         ? "border-transparent bg-[var(--color-primary)] text-[var(--color-on-primary)]"
         : "border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:border-[var(--color-primary)] hover:text-[var(--color-foreground)]",
@@ -124,9 +124,9 @@ export function QuestionBrowser({
   return (
     <div>
       {/* toolbar */}
-      <div className="no-print sticky top-16 z-20 -mx-4 mb-5 bg-[color-mix(in_oklab,var(--color-background)_88%,transparent)] px-4 py-3 backdrop-blur-xl">
+      <div className="no-print sticky top-16 z-20 -mx-4 mb-4 bg-[color-mix(in_oklab,var(--color-background)_88%,transparent)] px-4 py-2.5 backdrop-blur-xl sm:mb-5 sm:py-3">
         <div className="flex flex-wrap items-center gap-2">
-          <label className="relative flex min-w-[200px] flex-1 items-center">
+          <label className="relative flex min-w-[120px] flex-1 items-center sm:min-w-[200px]">
             <Search
               size={15}
               className="pointer-events-none absolute left-3 text-[var(--color-muted-foreground)]"
@@ -136,7 +136,7 @@ export function QuestionBrowser({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search questions, answers, reagents…"
-              className="clay w-full rounded-xl py-2.5 pl-9 pr-9 text-[13.5px] outline-none placeholder:text-[var(--color-muted-foreground)] focus:border-[var(--color-primary)]"
+              className="clay min-h-11 w-full rounded-xl py-2.5 pl-9 pr-9 text-[15px] outline-none placeholder:text-[var(--color-muted-foreground)] focus:border-[var(--color-primary)] sm:min-h-0 sm:text-[13.5px]"
             />
             {query && (
               <button
@@ -165,10 +165,13 @@ export function QuestionBrowser({
 
           <button
             onClick={() => setRevealAll((v) => (v === true ? undefined : true))}
+            aria-label={revealAll === true ? "Hide all answers" : "Reveal all answers"}
             className={cn(pill(revealAll === true), "flex items-center gap-1.5")}
           >
-            {revealAll === true ? <EyeOff size={13} /> : <Eye size={13} />}
-            {revealAll === true ? "Hide all" : "Reveal all"}
+            {revealAll === true ? <EyeOff size={14} /> : <Eye size={14} />}
+            <span className="sr-only xs:not-sr-only">
+              {revealAll === true ? "Hide all" : "Reveal all"}
+            </span>
           </button>
         </div>
 
@@ -258,7 +261,7 @@ export function QuestionBrowser({
           )}
         </AnimatePresence>
 
-        <p className="mt-2.5 text-[12.5px] text-[var(--color-muted-foreground)]">
+        <p className="mt-2 text-[13px] text-[var(--color-muted-foreground)] sm:mt-2.5 sm:text-[12.5px]">
           <strong className="font-semibold text-[var(--color-foreground)]">{filtered.length}</strong>{" "}
           question{filtered.length === 1 ? "" : "s"}
           {solved.ready && solvedCount > 0 && (

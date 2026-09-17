@@ -9,16 +9,26 @@ import { CH04 } from "./chapters/ch04-d-and-f-block";
 import { CH04B } from "./chapters/ch04b-d-and-f-block";
 import { CH05 } from "./chapters/ch05-coordination-compounds";
 import { CH05B } from "./chapters/ch05b-coordination-compounds";
+import { CH05C } from "./chapters/ch05c-cft";
 import { CH06 } from "./chapters/ch06-haloalkanes";
 import { CH06B } from "./chapters/ch06b-haloalkanes";
+import { CH06C } from "./chapters/ch06c-reactions";
 import { CH07 } from "./chapters/ch07-alcohols-phenols-ethers";
 import { CH07B } from "./chapters/ch07b-alcohols-phenols-ethers";
+import { CH07C } from "./chapters/ch07c-reactions";
+import { CH07D } from "./chapters/ch07d-named";
 import { CH08 } from "./chapters/ch08-aldehydes-ketones-acids";
 import { CH08B } from "./chapters/ch08b-aldehydes-ketones-acids";
+import { CH08C } from "./chapters/ch08c-reactions";
+import { CH08D } from "./chapters/ch08d-named";
 import { CH09 } from "./chapters/ch09-amines";
 import { CH09B } from "./chapters/ch09b-amines";
+import { CH09C } from "./chapters/ch09c-reactions";
+import { CH09D } from "./chapters/ch09d-reasoning";
 import { CH10 } from "./chapters/ch10-biomolecules";
 import { CH10B } from "./chapters/ch10b-biomolecules";
+import { CH10C } from "./chapters/ch10c-reactions";
+import { CH10D } from "./chapters/ch10d-definitions";
 
 export const QUESTIONS: Question[] = [
   ...CH01,
@@ -31,16 +41,26 @@ export const QUESTIONS: Question[] = [
   ...CH04B,
   ...CH05,
   ...CH05B,
+  ...CH05C,
   ...CH06,
   ...CH06B,
+  ...CH06C,
   ...CH07,
   ...CH07B,
+  ...CH07C,
+  ...CH07D,
   ...CH08,
   ...CH08B,
+  ...CH08C,
+  ...CH08D,
   ...CH09,
   ...CH09B,
+  ...CH09C,
+  ...CH09D,
   ...CH10,
   ...CH10B,
+  ...CH10C,
+  ...CH10D,
 ];
 
 export const QUESTIONS_BY_CHAPTER = new Map<number, Question[]>(

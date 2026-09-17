@@ -93,7 +93,7 @@ export function Header() {
             href="/bookmarks"
             aria-label="Bookmarked questions"
             className={cn(
-              "clay-press grid size-9 place-items-center rounded-xl border cursor-pointer",
+              "clay-press grid size-11 place-items-center rounded-xl border cursor-pointer sm:size-9",
               isActive("/bookmarks")
                 ? "border-[var(--color-primary)] bg-[color-mix(in_oklab,var(--color-primary)_14%,transparent)] text-[var(--color-primary)]"
                 : "border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)]",
@@ -104,7 +104,7 @@ export function Header() {
           <button
             onClick={toggle}
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            className="clay-press grid size-9 cursor-pointer place-items-center rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)]"
+            className="clay-press grid size-11 cursor-pointer place-items-center rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] sm:size-9"
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
@@ -112,7 +112,7 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="clay-press grid size-9 cursor-pointer place-items-center rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] md:hidden"
+            className="clay-press grid size-11 cursor-pointer place-items-center rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] md:hidden"
           >
             {open ? <X size={16} /> : <Menu size={16} />}
           </button>

@@ -14,7 +14,7 @@ export default function HomePage() {
       {/* ---------------- Hero ---------------- */}
       <section className="mx-auto max-w-6xl px-4 pb-14 pt-12 sm:pt-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+          <div className="min-w-0">
             <Reveal>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-3 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-[var(--color-primary)] shadow-[var(--shadow-clay)]">
                 <Sparkles size={12} />
@@ -65,7 +65,7 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={0.24}>
-              <dl className="mt-9 grid max-w-lg grid-cols-3 gap-3">
+              <dl className="mt-9 grid max-w-lg grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
                 {[
                   { n: STATS.total, l: "questions" },
                   { n: 10, l: "units in syllabus" },
@@ -85,8 +85,8 @@ export default function HomePage() {
           </div>
 
           {/* Hero figure — a real diagram from the bank, not a stock illustration */}
-          <Reveal delay={0.16} y={26}>
-            <div className="clay p-2 sm:p-4">
+          <Reveal delay={0.16} y={26} className="min-w-0">
+            <div className="clay min-w-0 overflow-hidden p-2 sm:p-4">
               <Structure spec={{ kind: "named", id: "chlorobenzene-resonance" }} />
             </div>
           </Reveal>

@@ -33,7 +33,7 @@ export default async function ChapterPage(props: PageProps<"/chapters/[slug]">) 
   const next = CHAPTERS[idx + 1];
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-10">
+    <section className="mx-auto max-w-4xl px-4 py-6 sm:py-10">
       <Link
         href="/chapters"
         className="no-print inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-muted-foreground)] transition-colors hover:text-[var(--color-primary)]"
@@ -43,7 +43,7 @@ export default async function ChapterPage(props: PageProps<"/chapters/[slug]">) 
       </Link>
 
       {/* chapter header */}
-      <header className="clay relative mt-4 overflow-hidden p-6 sm:p-7">
+      <header className="clay relative mt-4 overflow-hidden p-4 sm:p-7">
         <span
           aria-hidden
           className="absolute inset-x-0 top-0 h-[4px]"
@@ -66,15 +66,20 @@ export default async function ChapterPage(props: PageProps<"/chapters/[slug]">) 
           </div>
         </div>
 
-        <p className="mt-4 text-[14.5px] leading-[1.75] text-[var(--color-muted-foreground)]">
+        <p className="mt-3 line-clamp-3 text-[13.5px] leading-[1.6] text-[var(--color-muted-foreground)] sm:mt-4 sm:line-clamp-none sm:text-[14.5px] sm:leading-[1.75]">
           {chapter.blurb}
         </p>
 
-        <div className="mt-5">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted-foreground)]">
+        {/*
+          The full topic list is worth having on a wide screen but on a phone it
+          pushed every question below the fold, so it collapses to a count there
+          and the detail lives on the syllabus page.
+        */}
+        <div className="mt-3 sm:mt-5">
+          <p className="mb-2 hidden text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-muted-foreground)] sm:block">
             Topics in the syllabus
           </p>
-          <ul className="flex flex-wrap gap-1.5">
+          <ul className="hidden flex-wrap gap-1.5 sm:flex">
             {chapter.topics.map((t) => (
               <li
                 key={t}
@@ -84,6 +89,12 @@ export default async function ChapterPage(props: PageProps<"/chapters/[slug]">) 
               </li>
             ))}
           </ul>
+          <Link
+            href="/syllabus"
+            className="inline-flex min-h-9 items-center text-[12.5px] font-semibold text-[var(--color-primary)] sm:hidden"
+          >
+            {`${chapter.topics.length} topics in the syllabus \u2192`}
+          </Link>
         </div>
 
         {chapter.deleted?.length ? (
@@ -96,7 +107,7 @@ export default async function ChapterPage(props: PageProps<"/chapters/[slug]">) 
         ) : null}
       </header>
 
-      <div className="mt-8">
+      <div className="mt-5 sm:mt-8">
         <QuestionBrowser
           questions={questions}
           emptyMessage="No questions in this chapter match the current filters."

@@ -25,12 +25,12 @@ function Block({ block }: { block: AnswerBlock }) {
   return (
     <div className="mt-3 first:mt-0">
       {block.label && (
-        <p className="mb-1 text-[12.5px] font-semibold tracking-[0.02em] text-[var(--color-primary)]">
+        <p className="mb-1 text-[13.5px] font-semibold tracking-[0.02em] text-[var(--color-primary)] sm:text-[12.5px]">
           <Chem text={block.label} />
         </p>
       )}
       {block.text && (
-        <p className="text-[14.5px] leading-[1.72] text-[var(--color-foreground)]">
+        <p className="text-[15.5px] leading-[1.72] sm:text-[14.5px]">
           <Chem text={block.text} />
         </p>
       )}
@@ -39,7 +39,7 @@ function Block({ block }: { block: AnswerBlock }) {
       {block.points && (
         <ul className="mt-2 space-y-1.5">
           {block.points.map((p, i) => (
-            <li key={i} className="flex gap-2.5 text-[14.5px] leading-[1.7]">
+            <li key={i} className="flex gap-2.5 text-[15.5px] leading-[1.7] sm:text-[14.5px]">
               <span
                 aria-hidden
                 className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[var(--color-primary)]"
@@ -176,7 +176,7 @@ export const QuestionCard = memo(function QuestionCard({
               aria-label={solved ? "Mark as unsolved" : "Mark as solved"}
               aria-pressed={!!solved}
               className={cn(
-                "clay-press grid size-7 cursor-pointer place-items-center rounded-lg border transition-colors",
+                "clay-press grid size-9 cursor-pointer place-items-center rounded-lg border transition-colors sm:size-7",
                 solved
                   ? "border-transparent bg-[var(--color-accent)] text-[var(--color-on-accent)]"
                   : "border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-accent)]",
@@ -191,7 +191,7 @@ export const QuestionCard = memo(function QuestionCard({
               aria-label={bookmarked ? "Remove bookmark" : "Bookmark this question"}
               aria-pressed={!!bookmarked}
               className={cn(
-                "clay-press grid size-7 cursor-pointer place-items-center rounded-lg border transition-colors",
+                "clay-press grid size-9 cursor-pointer place-items-center rounded-lg border transition-colors sm:size-7",
                 bookmarked
                   ? "border-transparent bg-[var(--color-primary)] text-[var(--color-on-primary)]"
                   : "border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)]",
@@ -210,7 +210,7 @@ export const QuestionCard = memo(function QuestionCard({
             <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-primary)]">
               Read the passage
             </p>
-            <p className="text-[13.5px] leading-[1.75] text-[var(--color-muted-foreground)]">
+            <p className="text-[14.5px] leading-[1.7] text-[var(--color-muted-foreground)] sm:text-[13.5px] sm:leading-[1.75]">
               <Chem text={q.passage} />
             </p>
           </div>
@@ -224,7 +224,7 @@ export const QuestionCard = memo(function QuestionCard({
           )}
           <div className="min-w-0 flex-1">
             {q.question.split("\n").map((line, i) => (
-              <p key={i} className="text-[15px] font-medium leading-[1.68] first:mt-0 [&+&]:mt-1.5">
+              <p key={i} className="text-[16.5px] font-medium leading-[1.6] first:mt-0 sm:text-[15px] sm:leading-[1.68] [&+&]:mt-1.5">
                 <Chem text={line} />
               </p>
             ))}
@@ -246,7 +246,7 @@ export const QuestionCard = memo(function QuestionCard({
                     onClick={() => setPicked(i)}
                     disabled={picked !== null}
                     className={cn(
-                      "clay-press flex w-full items-start gap-2.5 rounded-[var(--radius-sm)] border px-3 py-2.5 text-left text-[13.5px] leading-[1.55]",
+                      "clay-press flex w-full items-start gap-2.5 rounded-[var(--radius-sm)] border px-3 py-3 text-left text-[15px] leading-[1.5] sm:py-2.5 sm:text-[13.5px] sm:leading-[1.55]",
                       picked === null && "cursor-pointer hover:border-[var(--color-primary)]",
                       revealed && isCorrect &&
                         "border-[var(--color-accent)] bg-[color-mix(in_oklab,var(--color-accent)_11%,transparent)]",
@@ -285,7 +285,7 @@ export const QuestionCard = memo(function QuestionCard({
             onClick={() => setOpenSelf((v) => !v)}
             aria-expanded={openSelf}
             aria-controls={panelId}
-            className="clay-press no-print mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl bg-[var(--color-primary)] px-3.5 py-2 text-[13px] font-semibold text-[var(--color-on-primary)] shadow-[var(--shadow-clay)]"
+            className="clay-press no-print mt-4 inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-xl bg-[var(--color-primary)] px-4 py-2.5 text-[14px] font-semibold text-[var(--color-on-primary)] shadow-[var(--shadow-clay)] sm:min-h-0 sm:px-3.5 sm:py-2 sm:text-[13px]"
           >
             {openSelf ? "Hide answer" : "Show answer"}
             <ChevronDown
@@ -317,7 +317,7 @@ export const QuestionCard = memo(function QuestionCard({
                 {q.keyPoint && (
                   <div className="mt-4 flex gap-2.5 rounded-[var(--radius-sm)] border border-[color-mix(in_oklab,var(--color-accent)_35%,var(--color-border))] bg-[color-mix(in_oklab,var(--color-accent)_8%,transparent)] px-3 py-2.5">
                     <Lightbulb size={15} className="mt-[2px] shrink-0 text-[var(--color-accent)]" />
-                    <p className="text-[13px] font-medium leading-[1.6]">
+                    <p className="text-[14px] font-medium leading-[1.6] sm:text-[13px]">
                       <Chem text={q.keyPoint} />
                     </p>
                   </div>

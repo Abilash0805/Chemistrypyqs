@@ -44,6 +44,9 @@
     --atom-ring: #cfc2ea;
     --plane-fill: #f6f1ff;
 
+    /* Edge shadow that marks a container with more content off-screen. */
+    --scroll-shadow: rgb(26 16 51 / 0.16);
+
     --radius-lg: 22px;
     --radius-md: 16px;
     --radius-sm: 11px;
@@ -73,6 +76,7 @@
     --color-ring: #a78bfa;
 
     --surface: #1a1230;
+    --scroll-shadow: rgb(0 0 0 / 0.5);
     --ink: #f4f1fb;
     --ink-muted: #a99fc4;
     --bond: #d9d1ef;
@@ -98,6 +102,8 @@
 }
 
 @theme inline {
+  /* Extra-small breakpoint for the narrowest phones. */
+  --breakpoint-xs: 25rem;
   --color-bg: var(--color-background);
   --color-fg: var(--color-foreground);
   --color-card: var(--color-card);
@@ -217,15 +223,30 @@
   white-space: nowrap;
 }
 
+/*
+ * Long equations scroll sideways on a phone, but a hard cut at the edge just
+ * looks broken. These are CSS-only scroll shadows: the two `local` gradients
+ * scroll with the content and mask the two `scroll` shadows, so a shadow is
+ * only visible on a side that actually has more content off-screen.
+ */
 .chem-equation {
   margin: 0.85rem 0;
   padding: 0.7rem 0.95rem;
   border-radius: var(--radius-sm);
-  background: var(--color-muted);
   border: 1px solid var(--color-border);
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
+  background:
+    linear-gradient(to right, var(--color-muted) 40%, transparent) left center / 2.5rem 100%
+      no-repeat local,
+    linear-gradient(to left, var(--color-muted) 40%, transparent) right center / 2.5rem 100%
+      no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--scroll-shadow), transparent) left center /
+      0.85rem 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--scroll-shadow), transparent) right center /
+      0.85rem 100% no-repeat scroll,
+    var(--color-muted);
 }
 
 .chem-equation-inner {
@@ -272,11 +293,68 @@
  * sideways instead, keeping the lettering at a legible size.
  */
 @media (max-width: 639px) {
+  /* Reading sizes: the desktop scale is too small to read on a phone. */
+  .chem-equation-inner {
+    font-size: 1.02rem;
+  }
+
+  .chem-figcaption {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .answer-table {
+    font-size: 0.93rem;
+  }
+
+  .answer-table th {
+    font-size: 0.86rem;
+  }
+
+  /*
+   * The reagent above the arrow and the conditions below it are the part of an
+   * equation a student actually has to read, and 0.68em landed at ~11px on a
+   * phone. The equation scrolls sideways anyway, so there is no cost to it.
+   */
+  .chem-arrow-label {
+    font-size: 0.78em;
+    color: var(--color-foreground);
+    opacity: 0.85;
+  }
+
+  .answer-table th,
+  .answer-table td {
+    padding: 0.55rem 0.6rem;
+  }
+
   .chem-figure {
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
+    background:
+      linear-gradient(to right, var(--surface) 40%, transparent) left center / 2.5rem 100%
+        no-repeat local,
+      linear-gradient(to left, var(--surface) 40%, transparent) right center / 2.5rem 100%
+        no-repeat local,
+      radial-gradient(farthest-side at 0 50%, var(--scroll-shadow), transparent) left center /
+        0.85rem 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, var(--scroll-shadow), transparent) right center /
+        0.85rem 100% no-repeat scroll,
+      var(--surface);
+  }
+
+  .thin-scroll {
+    background:
+      linear-gradient(to right, var(--color-card) 40%, transparent) left center / 2rem 100%
+        no-repeat local,
+      linear-gradient(to left, var(--color-card) 40%, transparent) right center / 2rem 100%
+        no-repeat local,
+      radial-gradient(farthest-side at 0 50%, var(--scroll-shadow), transparent) left center /
+        0.8rem 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, var(--scroll-shadow), transparent) right center /
+        0.8rem 100% no-repeat scroll,
+      var(--color-card);
   }
 
   .chem-svg {

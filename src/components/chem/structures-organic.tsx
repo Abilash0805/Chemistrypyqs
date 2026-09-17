@@ -50,7 +50,7 @@ export function ChlorobenzeneResonance() {
     <Figure
       width={W}
       height={H}
-      caption="Resonance in chlorobenzene: the C\u2013Cl bond acquires partial double-bond character, so it is shorter and stronger than in haloalkanes and is not replaced easily. The negative charge appears only at the **ortho** and **para** positions."
+      caption="Resonance in chlorobenzene: the C–Cl bond acquires partial double-bond character, so it is shorter and stronger than in haloalkanes and is not replaced easily. The negative charge appears only at the **ortho** and **para** positions."
       label="Resonance structures of chlorobenzene"
     >
       {centres.map((cx, i) => (
@@ -67,7 +67,7 @@ export function ChlorobenzeneResonance() {
             ]}
           />
           {i > 0 && (
-            <SvgLabel at={chargeAt(cx, 104, negPos[i])} text="\u2296" tone="alt" size={17} />
+            <SvgLabel at={chargeAt(cx, 104, negPos[i])} text="⊖" tone="alt" size={17} />
           )}
           <text
             x={cx}
