@@ -21,6 +21,7 @@ import { CH08 } from "./chapters/ch08-aldehydes-ketones-acids";
 import { CH08B } from "./chapters/ch08b-aldehydes-ketones-acids";
 import { CH08C } from "./chapters/ch08c-reactions";
 import { CH08D } from "./chapters/ch08d-named";
+import { CH08E } from "./chapters/ch08e-ordering";
 import { CH09 } from "./chapters/ch09-amines";
 import { CH09B } from "./chapters/ch09b-amines";
 import { CH09C } from "./chapters/ch09c-reactions";
@@ -53,6 +54,7 @@ export const QUESTIONS: Question[] = [
   ...CH08B,
   ...CH08C,
   ...CH08D,
+  ...CH08E,
   ...CH09,
   ...CH09B,
   ...CH09C,
