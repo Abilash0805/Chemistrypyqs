@@ -1,194 +1,332 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Bookmark, BookmarkCheck, CheckCircle, Circle, ChevronDown, Eye, EyeOff, Calendar, Hash, Tag, Repeat2 } from 'lucide-react';
-import { Question } from '@/types';
-import { cn, getDifficultyColor, getTypeLabel, getMarksColor } from '@/lib/utils';
-import MathText from './MathText';
+import { memo, useId, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  Bookmark,
+  BookmarkCheck,
+  Check,
+  ChevronDown,
+  CircleCheck,
+  Lightbulb,
+} from "lucide-react";
+import type { AnswerBlock, Question } from "@/types";
+import { Chem, Equation } from "./chem/Chem";
+import { Structure } from "./chem/Structure";
+import { QUESTION_TYPE_LABEL } from "@/data/questions";
+import { CHAPTER_BY_ID } from "@/data/chapters";
+import { cn } from "@/lib/utils";
 
-interface QuestionCardProps {
-  question: Question;
-  isBookmarked: boolean;
-  isSolved: boolean;
-  onToggleBookmark: (id: string) => void;
-  onToggleSolved: (id: string) => void;
-  chapterColor?: string;
-  searchQuery?: string;
-  index?: number;
-  forceShowAnswer?: boolean;
+/* ------------------------------------------------------------------ */
+/* Answer rendering                                                    */
+/* ------------------------------------------------------------------ */
+
+function Block({ block }: { block: AnswerBlock }) {
+  return (
+    <div className="mt-3 first:mt-0">
+      {block.label && (
+        <p className="mb-1 text-[13.5px] font-semibold tracking-[0.02em] text-[var(--color-primary)] sm:text-[12.5px]">
+          <Chem text={block.label} />
+        </p>
+      )}
+      {block.text && (
+        <p className="text-[15.5px] leading-[1.72] sm:text-[14.5px]">
+          <Chem text={block.text} />
+        </p>
+      )}
+      {block.equation && <Equation text={block.equation} />}
+      {block.equations?.map((eq, i) => <Equation key={i} text={eq} />)}
+      {block.points && (
+        <ul className="mt-2 space-y-1.5">
+          {block.points.map((p, i) => (
+            <li key={i} className="flex gap-2.5 text-[15.5px] leading-[1.7] sm:text-[14.5px]">
+              <span
+                aria-hidden
+                className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[var(--color-primary)]"
+              />
+              <span>
+                <Chem text={p} />
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {block.table && (
+        <div className="thin-scroll overflow-x-auto">
+          <table className="answer-table">
+            <thead>
+              <tr>
+                {block.table[0].map((h, i) => (
+                  <th key={i}>
+                    <Chem text={h} />
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.table.slice(1).map((row, r) => (
+                <tr key={r}>
+                  {row.map((cell, c) => (
+                    <td key={c}>
+                      <Chem text={cell} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {block.figure && <Structure spec={block.figure} />}
+    </div>
+  );
 }
 
-export default function QuestionCard({
-  question: q,
-  isBookmarked,
-  isSolved,
-  onToggleBookmark,
-  onToggleSolved,
-  chapterColor = '#6366f1',
-  searchQuery = '',
-  index = 0,
-  forceShowAnswer = false,
-}: QuestionCardProps) {
-  const [showAnswer, setShowAnswer] = useState(false);
-  const isAnswerVisible = showAnswer || forceShowAnswer;
+/* ------------------------------------------------------------------ */
+/* Chips                                                               */
+/* ------------------------------------------------------------------ */
 
-  const handleBookmark = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    onToggleBookmark(q.id);
-  }, [q.id, onToggleBookmark]);
-
-  const handleSolved = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    onToggleSolved(q.id);
-  }, [q.id, onToggleSolved]);
-
+function Chip({
+  children,
+  tone = "muted",
+}: {
+  children: React.ReactNode;
+  tone?: "muted" | "brand" | "accent";
+}) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: Math.min(index * 0.03, 0.3), duration: 0.3 }}
+    <span
       className={cn(
-        'group relative bg-white rounded-2xl border shadow-sm hover:shadow-md transition-all duration-200',
-        isSolved ? 'border-emerald-200 bg-emerald-50/30' : 'border-gray-200',
+        "inline-flex items-center rounded-lg px-2 py-[3px] text-[11px] font-semibold tracking-[0.02em]",
+        tone === "brand" &&
+          "bg-[color-mix(in_oklab,var(--color-primary)_14%,transparent)] text-[var(--color-primary)]",
+        tone === "accent" &&
+          "bg-[color-mix(in_oklab,var(--color-accent)_16%,transparent)] text-[var(--color-accent)]",
+        tone === "muted" && "bg-[var(--color-muted)] text-[var(--color-muted-foreground)]",
       )}
     >
-      {/* Left accent bar */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl"
-        style={{ backgroundColor: chapterColor }}
-      />
+      {children}
+    </span>
+  );
+}
 
-      <div className="px-5 pt-4 pb-3 ml-2">
-        {/* Top badges row */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          {q.year && (
-            <span className="inline-flex items-center gap-1 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200 rounded-full px-2.5 py-0.5">
-              <Calendar className="w-3 h-3" />
-              {q.year}
-            </span>
+/* ------------------------------------------------------------------ */
+
+export interface QuestionCardProps {
+  question: Question;
+  index?: number;
+  /** Controlled reveal — used by the "reveal all" button. */
+  forceOpen?: boolean;
+  bookmarked?: boolean;
+  solved?: boolean;
+  onBookmark?: (id: string) => void;
+  onSolve?: (id: string) => void;
+  showChapter?: boolean;
+}
+
+export const QuestionCard = memo(function QuestionCard({
+  question: q,
+  index,
+  forceOpen,
+  bookmarked,
+  solved,
+  onBookmark,
+  onSolve,
+  showChapter,
+}: QuestionCardProps) {
+  const [openSelf, setOpenSelf] = useState(false);
+  const [picked, setPicked] = useState<number | null>(null);
+  const panelId = useId();
+  const open = forceOpen ?? openSelf;
+  const chapter = CHAPTER_BY_ID.get(q.chapter);
+
+  const isChoice = q.type === "mcq" || q.type === "assertion-reason";
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 14, scale: 0.985 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+        delay: Math.min((index ?? 0) % 8, 7) * 0.045,
+      }}
+      className={cn(
+        "clay overflow-hidden",
+        solved && "border-[color-mix(in_oklab,var(--color-accent)_45%,var(--color-border))]",
+      )}
+    >
+      {/* header strip */}
+      <div className="flex flex-wrap items-center gap-1.5 border-b border-[var(--color-border)] bg-[var(--color-muted)] px-4 py-2.5 sm:px-5">
+        <Chip tone="brand">{QUESTION_TYPE_LABEL[q.type]}</Chip>
+        <Chip>
+          {q.marks} mark{q.marks > 1 ? "s" : ""}
+        </Chip>
+        {showChapter && chapter && <Chip>Ch {chapter.id}</Chip>}
+        <Chip>{q.topic}</Chip>
+        {q.years.length > 0 && (
+          <Chip tone="accent">{q.years.slice(0, 3).sort((a, b) => b - a).join(" · ")}</Chip>
+        )}
+        {q.years.length > 1 && <Chip tone="accent">Repeated</Chip>}
+
+        <div className="ml-auto flex items-center gap-1 no-print">
+          {onSolve && (
+            <button
+              onClick={() => onSolve(q.id)}
+              aria-label={solved ? "Mark as unsolved" : "Mark as solved"}
+              aria-pressed={!!solved}
+              className={cn(
+                "clay-press grid size-9 cursor-pointer place-items-center rounded-lg border transition-colors sm:size-7",
+                solved
+                  ? "border-transparent bg-[var(--color-accent)] text-[var(--color-on-accent)]"
+                  : "border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-accent)]",
+              )}
+            >
+              <Check size={13} strokeWidth={3} />
+            </button>
           )}
-          <span className={cn(
-            'inline-flex items-center gap-1 text-xs font-medium border rounded-full px-2.5 py-0.5',
-            getMarksColor(q.marks)
-          )}>
-            <Hash className="w-3 h-3" />
-            {q.marks} {q.marks === 1 ? 'Mark' : 'Marks'}
-          </span>
-          <span className={cn(
-            'inline-flex items-center text-xs font-medium border rounded-full px-2.5 py-0.5',
-            getDifficultyColor(q.difficulty)
-          )}>
-            {q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1)}
-          </span>
-          <span className="inline-flex items-center gap-1 text-xs font-medium bg-gray-100 text-gray-600 rounded-full px-2.5 py-0.5">
-            <Tag className="w-3 h-3" />
-            {getTypeLabel(q.type)}
-          </span>
-          {q.frequency > 2 && (
-            <span className="inline-flex items-center gap-1 text-xs font-semibold bg-orange-50 text-orange-600 border border-orange-200 rounded-full px-2.5 py-0.5">
-              <Repeat2 className="w-3 h-3" />
-              Repeated {q.frequency}×
-            </span>
-          )}
-          {q.isImportant && (
-            <span className="inline-flex items-center text-xs font-semibold bg-yellow-50 text-yellow-700 border border-yellow-200 rounded-full px-2.5 py-0.5">
-              ⭐ Important
-            </span>
+          {onBookmark && (
+            <button
+              onClick={() => onBookmark(q.id)}
+              aria-label={bookmarked ? "Remove bookmark" : "Bookmark this question"}
+              aria-pressed={!!bookmarked}
+              className={cn(
+                "clay-press grid size-9 cursor-pointer place-items-center rounded-lg border transition-colors sm:size-7",
+                bookmarked
+                  ? "border-transparent bg-[var(--color-primary)] text-[var(--color-on-primary)]"
+                  : "border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-primary)]",
+              )}
+            >
+              {bookmarked ? <BookmarkCheck size={13} /> : <Bookmark size={13} />}
+            </button>
           )}
         </div>
+      </div>
 
-        {/* Question text */}
-        <div className="mb-3">
-          <p className="text-gray-800 leading-relaxed font-medium text-[0.95rem]">
-            <MathText text={q.question} highlightSearch={searchQuery} />
-          </p>
+      {/* body */}
+      <div className="px-4 py-4 sm:px-5">
+        {q.passage && (
+          <div className="mb-4 rounded-[var(--radius-md)] border-l-[3px] border-[var(--color-primary)] bg-[var(--color-muted)] px-4 py-3">
+            <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-primary)]">
+              Read the passage
+            </p>
+            <p className="text-[14.5px] leading-[1.7] text-[var(--color-muted-foreground)] sm:text-[13.5px] sm:leading-[1.75]">
+              <Chem text={q.passage} />
+            </p>
+          </div>
+        )}
+
+        <div className="flex gap-3">
+          {typeof index === "number" && (
+            <span className="mt-[2px] shrink-0 font-display text-[15px] font-semibold tabular-nums text-[var(--color-muted-foreground)]">
+              {index + 1}.
+            </span>
+          )}
+          <div className="min-w-0 flex-1">
+            {q.question.split("\n").map((line, i) => (
+              <p key={i} className="text-[16.5px] font-medium leading-[1.6] first:mt-0 sm:text-[15px] sm:leading-[1.68] [&+&]:mt-1.5">
+                <Chem text={line} />
+              </p>
+            ))}
+          </div>
         </div>
 
-        {/* Answer section */}
-        <AnimatePresence>
-          {isAnswerVisible && q.answer && (
+        {q.figures?.map((f, i) => <Structure key={i} spec={f} />)}
+
+        {/* options */}
+        {isChoice && q.options && (
+          <ul className="mt-3.5 grid gap-2 sm:grid-cols-2">
+            {q.options.map((opt, i) => {
+              const revealed = open || picked !== null;
+              const isCorrect = i === q.correct;
+              const isPicked = picked === i;
+              return (
+                <li key={i}>
+                  <button
+                    onClick={() => setPicked(i)}
+                    disabled={picked !== null}
+                    className={cn(
+                      "clay-press flex w-full items-start gap-2.5 rounded-[var(--radius-sm)] border px-3 py-3 text-left text-[15px] leading-[1.5] sm:py-2.5 sm:text-[13.5px] sm:leading-[1.55]",
+                      picked === null && "cursor-pointer hover:border-[var(--color-primary)]",
+                      revealed && isCorrect &&
+                        "border-[var(--color-accent)] bg-[color-mix(in_oklab,var(--color-accent)_11%,transparent)]",
+                      revealed && isPicked && !isCorrect &&
+                        "border-[var(--color-destructive)] bg-[color-mix(in_oklab,var(--color-destructive)_10%,transparent)]",
+                      !(revealed && (isCorrect || isPicked)) &&
+                        "border-[var(--color-border)] bg-[var(--color-card)]",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "grid size-5 shrink-0 place-items-center rounded-md text-[11px] font-bold",
+                        revealed && isCorrect
+                          ? "bg-[var(--color-accent)] text-[var(--color-on-accent)]"
+                          : "bg-[var(--color-muted)] text-[var(--color-muted-foreground)]",
+                      )}
+                    >
+                      {"ABCD"[i]}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <Chem text={opt} />
+                    </span>
+                    {revealed && isCorrect && (
+                      <CircleCheck size={15} className="mt-[2px] shrink-0 text-[var(--color-accent)]" />
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+        {/* reveal toggle */}
+        {forceOpen === undefined && (
+          <button
+            onClick={() => setOpenSelf((v) => !v)}
+            aria-expanded={openSelf}
+            aria-controls={panelId}
+            className="clay-press no-print mt-4 inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-xl bg-[var(--color-primary)] px-4 py-2.5 text-[14px] font-semibold text-[var(--color-on-primary)] shadow-[var(--shadow-clay)] sm:min-h-0 sm:px-3.5 sm:py-2 sm:text-[13px]"
+          >
+            {openSelf ? "Hide answer" : "Show answer"}
+            <ChevronDown
+              size={14}
+              className={cn("transition-transform duration-200", openSelf && "rotate-180")}
+            />
+          </button>
+        )}
+
+        {/* answer */}
+        <AnimatePresence initial={false}>
+          {open && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              id={panelId}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <div className="mt-3 pt-3 border-t border-gray-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-semibold text-emerald-600 uppercase tracking-wide">Answer</span>
-                  <div className="flex-1 h-px bg-emerald-100" />
-                </div>
-                <div className="text-gray-700 leading-relaxed text-[0.9rem] bg-emerald-50/50 rounded-xl p-3 border border-emerald-100">
-                  <MathText text={q.answer} highlightSearch={searchQuery} />
-                </div>
-              </div>
-            </motion.div>
-          )}
-          {isAnswerVisible && !q.answer && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden"
-            >
-              <div className="mt-3 pt-3 border-t border-gray-100">
-                <div className="text-gray-400 text-sm italic bg-gray-50 rounded-xl p-3 text-center">
-                  Answer not available for this question.
-                </div>
+              <div className="answer-prose mt-4 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-muted)] px-4 py-3.5">
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.11em] text-[var(--color-accent)]">
+                  Exam-ready answer
+                </p>
+                {q.answer.map((b, i) => (
+                  <Block key={i} block={b} />
+                ))}
+
+                {q.keyPoint && (
+                  <div className="mt-4 flex gap-2.5 rounded-[var(--radius-sm)] border border-[color-mix(in_oklab,var(--color-accent)_35%,var(--color-border))] bg-[color-mix(in_oklab,var(--color-accent)_8%,transparent)] px-3 py-2.5">
+                    <Lightbulb size={15} className="mt-[2px] shrink-0 text-[var(--color-accent)]" />
+                    <p className="text-[14px] font-medium leading-[1.6] sm:text-[13px]">
+                      <Chem text={q.keyPoint} />
+                    </p>
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Action buttons */}
-        <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-100/80">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setShowAnswer(v => !v)}
-              className={cn(
-                'flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all duration-150',
-                isAnswerVisible
-                  ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                  : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200'
-              )}
-            >
-              {isAnswerVisible ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-              {isAnswerVisible ? 'Hide Answer' : 'Show Answer'}
-            </button>
-          </div>
-
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={handleSolved}
-              className={cn(
-                'flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg transition-all duration-150',
-                isSolved
-                  ? 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100'
-                  : 'text-gray-500 hover:text-emerald-600 hover:bg-emerald-50'
-              )}
-              title={isSolved ? 'Mark as unsolved' : 'Mark as solved'}
-            >
-              {isSolved ? <CheckCircle className="w-4 h-4" /> : <Circle className="w-4 h-4" />}
-              <span className="hidden sm:inline">{isSolved ? 'Solved' : 'Mark Solved'}</span>
-            </button>
-            <button
-              onClick={handleBookmark}
-              className={cn(
-                'flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg transition-all duration-150',
-                isBookmarked
-                  ? 'text-amber-700 bg-amber-50 hover:bg-amber-100'
-                  : 'text-gray-500 hover:text-amber-600 hover:bg-amber-50'
-              )}
-              title={isBookmarked ? 'Remove bookmark' : 'Bookmark'}
-            >
-              {isBookmarked ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
-              <span className="hidden sm:inline">{isBookmarked ? 'Saved' : 'Save'}</span>
-            </button>
-          </div>
-        </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
-}
+});

@@ -1,259 +1,271 @@
-'use client';
+import Link from "next/link";
+import { ArrowRight, BookOpen, FlaskConical, Shapes, Sparkles } from "lucide-react";
+import { CHAPTERS, REMOVED_UNITS } from "@/data/chapters";
+import { QUESTIONS_BY_CHAPTER, STATS, QUESTION_TYPE_LABEL } from "@/data/questions";
+import { Reveal, RevealGroup } from "@/components/Reveal";
+import { Structure } from "@/components/chem/Structure";
+import { Chem } from "@/components/chem/Chem";
 
-import React, { useState, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Bookmark, List, Repeat2, Search, X, ArrowLeft } from 'lucide-react';
-import questionsData from '@/data/questions.json';
-import { Question, FilterState, Chapter } from '@/types';
-import { filterQuestions } from '@/lib/utils';
-import { useBookmarks } from '@/hooks/useBookmarks';
-import Sidebar from '@/components/Sidebar';
-import FilterBar from '@/components/FilterBar';
-import StatsBar from '@/components/StatsBar';
-import QuestionList from '@/components/QuestionList';
-import Header from '@/components/Header';
-import HomePage from '@/components/HomePage';
-
-const data = questionsData as unknown as {
-  questions: Question[];
-  chapters: Record<string, Chapter>;
-  totalQuestions: number;
-  years: number[];
-};
-
-const DEFAULT_FILTERS: FilterState = {
-  chapter: null,
-  year: null,
-  marks: null,
-  difficulty: null,
-  type: null,
-  source: null,
-  search: '',
-  showImportantOnly: false,
-  showUnanswered: false,
-};
-
-type ViewMode = 'home' | 'chapters' | 'questions' | 'bookmarks' | 'frequent';
-
-export default function Home() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
-  const [viewMode, setViewMode] = useState<ViewMode>('home');
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const { bookmarks, solved, toggleBookmark, toggleSolved } = useBookmarks();
-
-  const questions: Question[] = data.questions;
-  const chapters: Record<string, Chapter> = data.chapters;
-  const years: number[] = data.years;
-
-  const questionCounts = useMemo(() => {
-    const counts: Record<number, number> = {};
-    questions.forEach(q => { counts[q.chapter] = (counts[q.chapter] || 0) + 1; });
-    return counts;
-  }, [questions]);
-
-  const solvedCounts = useMemo(() => {
-    const counts: Record<number, number> = {};
-    questions.forEach(q => {
-      if (solved.has(q.id)) counts[q.chapter] = (counts[q.chapter] || 0) + 1;
-    });
-    return counts;
-  }, [questions, solved]);
-
-  const answeredCount = useMemo(() =>
-    questions.filter(q => q.answer && q.answer.length > 5).length,
-    [questions]
-  );
-
-  const activeFilters: FilterState = useMemo(() => ({
-    ...filters,
-    search: searchQuery,
-  }), [filters, searchQuery]);
-
-  const filteredQuestions = useMemo(() => {
-    if (viewMode === 'bookmarks') {
-      return filterQuestions(questions.filter(q => bookmarks.has(q.id)), activeFilters);
-    }
-    if (viewMode === 'frequent') {
-      return filterQuestions(
-        questions.filter(q => q.frequency >= 2).sort((a, b) => b.frequency - a.frequency),
-        { ...DEFAULT_FILTERS, search: searchQuery, chapter: filters.chapter }
-      );
-    }
-    return filterQuestions(questions, activeFilters);
-  }, [questions, activeFilters, viewMode, bookmarks, searchQuery, filters.chapter]);
-
-  const handleFilterChange = useCallback((key: keyof FilterState, value: FilterState[keyof FilterState]) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
-  }, []);
-
-  const handleClearFilters = useCallback(() => {
-    setFilters(prev => ({ ...DEFAULT_FILTERS, chapter: prev.chapter }));
-  }, []);
-
-  const handleSelectChapter = useCallback((id: number | null) => {
-    setFilters({ ...DEFAULT_FILTERS, chapter: id });
-    setViewMode('questions');
-    setSidebarOpen(false);
-  }, []);
-
-  const handleBack = useCallback(() => {
-    setViewMode('home');
-    setFilters(DEFAULT_FILTERS);
-    setSearchQuery('');
-    setSearchOpen(false);
-  }, []);
-
-  const selectedChapterInfo = filters.chapter !== null ? chapters[String(filters.chapter)] : null;
-  const yearRange = years.length > 0 ? `${years[0]}–${years[years.length - 1]}` : '';
-  const frequentCount = useMemo(() => questions.filter(q => q.frequency >= 2).length, [questions]);
-
-  const isListView = viewMode !== 'home';
+export default function HomePage() {
+  const typeCounts = Object.entries(STATS.byType).sort((a, b) => b[1] - a[1]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sidebar (desktop + mobile drawer) */}
-      <Sidebar
-        chapters={chapters}
-        questionCounts={questionCounts}
-        selectedChapter={filters.chapter}
-        onSelectChapter={handleSelectChapter}
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
+    <>
+      {/* ---------------- Hero ---------------- */}
+      <section className="mx-auto max-w-6xl px-4 pb-14 pt-12 sm:pt-20">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="min-w-0">
+            <Reveal>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-3 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-[var(--color-primary)] shadow-[var(--shadow-clay)]">
+                <Sparkles size={12} />
+                2026&ndash;27 syllabus only
+              </span>
+            </Reveal>
 
-      {/* Main layout */}
-      <div className="lg:pl-72">
-        {/* Header */}
-        <Header onMenuToggle={() => setSidebarOpen(true)} />
+            <Reveal delay={0.06}>
+              <h1 className="mt-5 font-display text-[clamp(2.1rem,6vw,3.6rem)] font-semibold leading-[1.06] tracking-[-0.02em]">
+                Every board question
+                <br />
+                that still{" "}
+                <span className="bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] bg-clip-text text-transparent">
+                  counts.
+                </span>
+              </h1>
+            </Reveal>
 
-        {/* Search bar — appears when in list view or search is open */}
-        <AnimatePresence>
-          {(isListView || searchOpen) && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              className="bg-white border-b border-gray-100 px-4 py-2.5"
-            >
-              <div className="flex items-center gap-2 max-w-2xl mx-auto">
-                {isListView && (
-                  <button
-                    onClick={handleBack}
-                    className="w-8 h-8 flex items-center justify-center text-gray-500 hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                  </button>
-                )}
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={e => {
-                      setSearchQuery(e.target.value);
-                      if (e.target.value && viewMode === 'home') setViewMode('questions');
-                    }}
-                    placeholder={selectedChapterInfo ? `Search in ${selectedChapterInfo.shortName}...` : 'Search questions, topics...'}
-                    className="w-full pl-9 pr-8 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition-all"
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery('')}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <Reveal delay={0.12}>
+              <p className="mt-5 max-w-xl text-[15.5px] leading-[1.75] text-[var(--color-muted-foreground)]">
+                CBSE Class 12 Chemistry previous year questions from{" "}
+                <strong className="font-semibold text-[var(--color-foreground)]">2013 to 2025</strong>,
+                filtered down to the ten units still in the syllabus &mdash; every one with an
+                exam-ready answer, correct subscripts and charges, balanced equations and clear
+                structural diagrams.
+              </p>
+            </Reveal>
 
-        {/* Tab bar — only in list view */}
-        {isListView && (
-          <div className="bg-white border-b border-gray-100 px-4 py-1.5 overflow-x-auto scrollbar-none">
-            <div className="flex items-center gap-1 max-w-2xl mx-auto">
-              {([
-                { mode: 'questions' as ViewMode, label: 'All Questions', icon: <List className="w-3.5 h-3.5" /> },
-                { mode: 'bookmarks' as ViewMode, label: `Saved (${bookmarks.size})`, icon: <Bookmark className="w-3.5 h-3.5" /> },
-                { mode: 'frequent' as ViewMode, label: `Repeated (${frequentCount})`, icon: <Repeat2 className="w-3.5 h-3.5" /> },
-              ]).map(tab => (
-                <button
-                  key={tab.mode}
-                  onClick={() => setViewMode(tab.mode)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg whitespace-nowrap transition-colors ${
-                    viewMode === tab.mode ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+            <Reveal delay={0.18}>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  href="/chapters"
+                  className="clay-press group inline-flex cursor-pointer items-center gap-2 rounded-2xl bg-[var(--color-primary)] px-5 py-3 text-[14px] font-semibold text-[var(--color-on-primary)] shadow-[var(--shadow-clay-lg)]"
                 >
-                  {tab.icon}{tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Content */}
-        <AnimatePresence mode="wait">
-          {!isListView ? (
-            <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <HomePage
-                totalQuestions={questions.length}
-                totalChapters={Object.keys(chapters).length}
-                yearRange={yearRange}
-                answeredCount={answeredCount}
-                solvedCount={solved.size}
-                chapters={chapters}
-                questionCounts={questionCounts}
-                solvedCounts={solvedCounts}
-                onBrowseChapters={() => { setFilters(DEFAULT_FILTERS); setViewMode('questions'); }}
-                onSearchQuestions={() => { setViewMode('questions'); setSearchOpen(true); }}
-                onSelectChapter={handleSelectChapter}
-              />
-            </motion.div>
-          ) : (
-            <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <div className="max-w-2xl mx-auto">
-                <StatsBar
-                  questions={
-                    viewMode === 'bookmarks' || viewMode === 'frequent'
-                      ? filteredQuestions
-                      : filters.chapter !== null
-                        ? questions.filter(q => q.chapter === filters.chapter)
-                        : questions
-                  }
-                  solved={solved}
-                  bookmarks={bookmarks}
-                  chapterName={
-                    viewMode === 'bookmarks' ? 'Saved Questions' :
-                    viewMode === 'frequent' ? 'Frequently Repeated' :
-                    selectedChapterInfo?.name ?? (searchQuery ? `"${searchQuery}"` : 'All Questions')
-                  }
-                />
-                <FilterBar
-                  filters={filters}
-                  years={years}
-                  onFilterChange={handleFilterChange}
-                  onClearFilters={handleClearFilters}
-                  totalFiltered={filteredQuestions.length}
-                  totalAll={questions.length}
-                />
-                <QuestionList
-                  questions={filteredQuestions}
-                  chapters={chapters}
-                  bookmarks={bookmarks}
-                  solved={solved}
-                  onToggleBookmark={toggleBookmark}
-                  onToggleSolved={toggleSolved}
-                  searchQuery={searchQuery}
-                />
+                  Start with a chapter
+                  <ArrowRight
+                    size={15}
+                    className="transition-transform duration-200 group-hover:translate-x-0.5"
+                  />
+                </Link>
+                <Link
+                  href="/browse"
+                  className="clay clay-press inline-flex cursor-pointer items-center gap-2 rounded-2xl px-5 py-3 text-[14px] font-semibold"
+                >
+                  Browse all {STATS.total}
+                </Link>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </div>
+            </Reveal>
+
+            <Reveal delay={0.24}>
+              <dl className="mt-9 grid max-w-lg grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
+                {[
+                  { n: STATS.total, l: "questions" },
+                  { n: 10, l: "units in syllabus" },
+                  { n: 13, l: "board papers" },
+                ].map((s) => (
+                  <div key={s.l} className="clay px-4 py-3.5">
+                    <dt className="font-display text-[26px] font-semibold leading-none tabular-nums text-[var(--color-primary)]">
+                      {s.n}
+                    </dt>
+                    <dd className="mt-1.5 text-[11.5px] font-medium uppercase tracking-[0.08em] text-[var(--color-muted-foreground)]">
+                      {s.l}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          </div>
+
+          {/* Hero figure — a real diagram from the bank, not a stock illustration */}
+          <Reveal delay={0.16} y={26} className="min-w-0">
+            <div className="clay min-w-0 overflow-hidden p-2 sm:p-4">
+              <Structure spec={{ kind: "named", id: "chlorobenzene-resonance" }} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------- What's inside ---------------- */}
+      <section className="mx-auto max-w-6xl px-4 py-14">
+        <Reveal>
+          <h2 className="font-display text-[clamp(1.5rem,3.4vw,2.1rem)] font-semibold tracking-[-0.015em]">
+            Written the way the marking scheme reads
+          </h2>
+          <p className="mt-2.5 max-w-2xl text-[14.5px] leading-[1.7] text-[var(--color-muted-foreground)]">
+            Notation is typeset, not approximated. Every answer is laid out in the steps an examiner
+            awards marks for.
+          </p>
+        </Reveal>
+
+        <RevealGroup className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: FlaskConical,
+              title: "Real chemical notation",
+              body: "Subscripts, superscripted charges, state symbols, Greek letters and reaction arrows carrying their reagents and conditions.",
+              demo: "2KMnO4 + 5H2C2O4 + 3H2SO4 ->[Δ] K2SO4 + 2MnSO4 + 10CO2 + 8H2O",
+            },
+            {
+              icon: Shapes,
+              title: "Structures you can actually read",
+              body: "Benzene rings with substituents, wedge–dash stereocentres, octahedral and square planar complexes — drawn as vectors, sharp at any zoom.",
+            },
+            {
+              icon: BookOpen,
+              title: "Answers with the working shown",
+              body: "Numericals go step by step with the formula quoted; reason-based questions name the effect at work and finish with the conclusion.",
+            },
+          ].map((f) => (
+            <article key={f.title} className="clay flex h-full flex-col p-5">
+              <span className="grid size-10 place-items-center rounded-[14px] bg-[color-mix(in_oklab,var(--color-primary)_13%,transparent)] text-[var(--color-primary)]">
+                <f.icon size={19} />
+              </span>
+              <h3 className="mt-4 font-display text-[17px] font-semibold">{f.title}</h3>
+              <p className="mt-2 flex-1 text-[13.5px] leading-[1.7] text-[var(--color-muted-foreground)]">
+                {f.body}
+              </p>
+              {f.demo && (
+                <div className="mt-3 text-[13px]">
+                  <Chem text={f.demo} />
+                </div>
+              )}
+            </article>
+          ))}
+        </RevealGroup>
+      </section>
+
+      {/* ---------------- Chapters ---------------- */}
+      <section className="mx-auto max-w-6xl px-4 py-14">
+        <Reveal>
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="font-display text-[clamp(1.5rem,3.4vw,2.1rem)] font-semibold tracking-[-0.015em]">
+                The ten units
+              </h2>
+              <p className="mt-2 text-[14.5px] text-[var(--color-muted-foreground)]">
+                70 marks of theory, unit by unit.
+              </p>
+            </div>
+            <Link
+              href="/chapters"
+              className="group inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-[var(--color-primary)]"
+            >
+              All chapters
+              <ArrowRight
+                size={14}
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </div>
+        </Reveal>
+
+        <RevealGroup className="mt-7 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+          {CHAPTERS.map((c) => {
+            const count = QUESTIONS_BY_CHAPTER.get(c.id)?.length ?? 0;
+            return (
+              <Link
+                key={c.id}
+                href={`/chapters/${c.slug}`}
+                className="clay clay-press group relative block h-full overflow-hidden p-5 hover:-translate-y-0.5 hover:shadow-[var(--shadow-clay-lg)]"
+              >
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-[3px]"
+                  style={{ background: c.accent }}
+                />
+                <div className="flex items-start justify-between gap-3">
+                  <span
+                    className="grid size-9 shrink-0 place-items-center rounded-xl font-display text-[15px] font-bold text-white"
+                    style={{ background: c.accent }}
+                  >
+                    {c.id}
+                  </span>
+                  <span className="rounded-lg bg-[var(--color-muted)] px-2 py-1 text-[11px] font-semibold text-[var(--color-muted-foreground)]">
+                    {c.unitMarks} marks
+                  </span>
+                </div>
+                <h3 className="mt-3.5 font-display text-[16.5px] font-semibold leading-tight">
+                  {c.name}
+                </h3>
+                <p className="mt-2 line-clamp-3 text-[13px] leading-[1.65] text-[var(--color-muted-foreground)]">
+                  {c.blurb}
+                </p>
+                <p className="mt-3.5 text-[12px] font-semibold text-[var(--color-primary)]">
+                  {count} question{count === 1 ? "" : "s"} &rarr;
+                </p>
+              </Link>
+            );
+          })}
+        </RevealGroup>
+      </section>
+
+      {/* ---------------- Coverage ---------------- */}
+      <section className="mx-auto max-w-6xl px-4 py-14 pb-20">
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Reveal>
+            <div className="clay h-full p-6">
+              <h2 className="font-display text-[19px] font-semibold">Every question type</h2>
+              <p className="mt-2 text-[13.5px] leading-[1.7] text-[var(--color-muted-foreground)]">
+                The paper has five sections. The bank covers all of them.
+              </p>
+              <ul className="mt-5 space-y-2.5">
+                {typeCounts.map(([type, n]) => (
+                  <li key={type} className="flex items-center gap-3">
+                    <span className="w-[112px] shrink-0 text-[12.5px] font-medium">
+                      {QUESTION_TYPE_LABEL[type as keyof typeof QUESTION_TYPE_LABEL]}
+                    </span>
+                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-[var(--color-muted)]">
+                      <span
+                        className="block h-full rounded-full bg-[var(--color-primary)]"
+                        style={{ width: `${(n / STATS.total) * 100 * 3.2}%`, maxWidth: "100%" }}
+                      />
+                    </span>
+                    <span className="w-7 shrink-0 text-right text-[12.5px] font-semibold tabular-nums text-[var(--color-muted-foreground)]">
+                      {n}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div className="clay h-full p-6">
+              <h2 className="font-display text-[19px] font-semibold">What has been left out</h2>
+              <p className="mt-2 text-[13.5px] leading-[1.7] text-[var(--color-muted-foreground)]">
+                Older papers are full of questions on units CBSE removed in the NCERT
+                rationalisation. Those questions are not in this bank &mdash; studying them is wasted
+                time.
+              </p>
+              <ul className="mt-5 grid gap-2">
+                {REMOVED_UNITS.map((u) => (
+                  <li
+                    key={u}
+                    className="flex items-center gap-2.5 rounded-[var(--radius-sm)] bg-[var(--color-muted)] px-3 py-2 text-[13px] text-[var(--color-muted-foreground)] line-through decoration-[var(--color-destructive)]/60"
+                  >
+                    {u}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/syllabus"
+                className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-primary)]"
+              >
+                See the full syllabus breakdown
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </>
   );
 }
