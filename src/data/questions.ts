@@ -33,6 +33,7 @@ import { CH10 } from "./chapters/ch10-biomolecules";
 import { CH10B } from "./chapters/ch10b-biomolecules";
 import { CH10C } from "./chapters/ch10c-reactions";
 import { CH10D } from "./chapters/ch10d-definitions";
+import { P2022T2 } from "./chapters/p2022-term2";
 
 export const QUESTIONS: Question[] = [
   ...CH01,
@@ -69,6 +70,7 @@ export const QUESTIONS: Question[] = [
   ...CH10B,
   ...CH10C,
   ...CH10D,
+  ...P2022T2,
 ];
 
 export const QUESTIONS_BY_CHAPTER = new Map<number, Question[]>(
