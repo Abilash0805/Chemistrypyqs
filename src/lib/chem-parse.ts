@@ -164,6 +164,23 @@ function formulaNodes(token: string): ChemNode[] {
   // Leading stoichiometric coefficient stays full size.
   while (i < token.length && /\d/.test(token[i])) buf += token[i++];
 
+  // A lone element carrying digits and a sign is an ion charge, not a count:
+  // `Ca2+` is Ca²⁺, never Ca₂⁺. Without this the element-plus-count rule below
+  // claims the digit first and the charge renders one line too low.
+  //
+  // The test is deliberately narrow — the whole remaining token must be one
+  // element symbol, digits, then the sign. That leaves every polyatomic case
+  // to the normal path, where the digit really is a count: `MnO4-` stays
+  // MnO₄⁻, `SO42-` stays SO₄²⁻, and the diazonium `N2+X−` of `Ar–N2+X−` keeps
+  // its two nitrogens.
+  const loneIon = token.slice(i).match(/^([A-Z][a-z]?)(\d+)([+\-−]{1,3})$/);
+  if (loneIon && (ELEMENTS.has(loneIon[1]) || loneIon[1].length === 1)) {
+    buf += loneIon[1];
+    flush();
+    out.push({ t: "sup", v: normaliseCharge(loneIon[2] + loneIon[3]) });
+    return out;
+  }
+
   while (i < token.length) {
     const rest = token.slice(i);
 
@@ -223,8 +240,12 @@ function formulaNodes(token: string): ChemNode[] {
       continue;
     }
 
-    // Bare trailing charge, e.g. Cu2+ / MnO4- / SO42-
-    const charge = rest.match(/^(\d*)([+\-−]{1,3})$/);
+    // Bare charge, e.g. MnO4- or the N2+ of a diazonium salt. The lookahead
+    // lets the charge sit mid-token, so `C6H5N2+Cl−` puts the plus over the
+    // nitrogen instead of leaving it on the baseline; it still has to be
+    // followed by a new species or the end, so arithmetic like `2+3` is left
+    // alone.
+    const charge = rest.match(/^(\d*)([+\-−]{1,3})(?=$|[A-Z])/);
     if (charge) {
       flush();
       out.push({ t: "sup", v: normaliseCharge(charge[1] + charge[2]) });

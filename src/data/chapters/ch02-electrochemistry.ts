@@ -319,19 +319,21 @@ export const CH02: Question[] = [
     topic: "Conductance",
     years: [2020, 2023],
     question:
-      "**Assertion (A):** The conductivity of an electrolyte increases with a decrease in concentration.\n**Reason (R):** The number of ions per unit volume decreases on dilution.",
+      "**Assertion (A):** Conductivity decreases with decrease in concentration of electrolyte.\n**Reason (R):** The number of ions per unit volume that carry the current in a solution decreases on dilution.",
     options: [
       "Both A and R are true and R is the correct explanation of A",
       "Both A and R are true but R is not the correct explanation of A",
       "A is true but R is false",
       "A is false but R is true",
     ],
-    correct: 3,
+    correct: 0,
     answer: [
       {
-        text: "**(d) A is false but R is true.** Conductivity \u03BA measures the conductance of unit volume of solution, so it depends directly on how many ions there are in that volume. On dilution that number falls, so **\u03BA decreases**, not increases. The reason given is the correct statement — it is exactly why the assertion is wrong.",
+        text: "**(a) Both A and R are true, and R is the correct explanation of A.** Conductivity \u03BA measures the conductance of **unit volume** of solution, so it depends directly on how many ions sit in that volume. Diluting the solution spreads the same ions through more solvent, so the number in any given cubic centimetre falls and **\u03BA decreases**. R states exactly that mechanism, so it is the reason A holds.",
       },
-      { text: "It is **molar** conductivity that increases on dilution." },
+      {
+        text: "Do not confuse this with **molar** conductivity, which *increases* on dilution because it is measured per mole of electrolyte rather than per unit volume. Both statements are true at once — they simply count different things.",
+      },
     ],
   },
   {

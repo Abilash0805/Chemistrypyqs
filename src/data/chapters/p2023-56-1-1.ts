@@ -525,45 +525,6 @@ export const P2023_5611: Question[] = [
       },
     ],
   },
-  {
-    id: "p23a-18",
-    chapter: 5,
-    type: "assertion-reason",
-    marks: 1,
-    difficulty: "medium",
-    topic: "Crystal field theory",
-    years: [2023],
-    question:
-      "Assertion (A) : Low spin tetrahedral complexes are rarely observed.\nReason (R) : Crystal field splitting energy is less than pairing energy for tetrahedral complexes.",
-    options: [
-      "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of the Assertion (A).",
-      "Both Assertion (A) and Reason (R) are true, but Reason (R) is not the correct explanation of the Assertion (A).",
-      "Assertion (A) is true, but Reason (R) is false.",
-      "Assertion (A) is false, but Reason (R) is true.",
-    ],
-    correct: 0,
-    answer: [
-      { text: "**(a)** — both true, and R explains A." },
-      {
-        text: "Whether a complex is high spin or low spin is decided by comparing the **splitting energy Δ** with the **pairing energy P**. Electrons pair up in the lower set only when Δ > P; otherwise they spread out and keep their spins parallel.",
-      },
-      {
-        text: "For a tetrahedral field the splitting is small:",
-      },
-      { equation: "$\\Delta_t = \\tfrac{4}{9}\\,\\Delta_o$" },
-      {
-        label: "Two reasons it is small",
-        points: [
-          "There are only **four** ligands instead of six, so less total electrostatic effect.",
-          "**None** of the ligands points directly at a d orbital — they sit between the axes — so the interaction is weaker still.",
-        ],
-      },
-      {
-        text: "With Δ_t less than four-ninths of an already modest Δ_o, it is almost always smaller than P. Pairing therefore costs more than it saves, the electrons stay unpaired, and the complex is **high spin** — which is exactly why low spin tetrahedral complexes are rare.",
-      },
-    ],
-    keyPoint: "Δ_t = (4/9)Δ_o < P almost always, so tetrahedral complexes are high spin.",
-  },
 
   /* ---------------------------------------------------------------- */
   /* SECTION B — very short answer, 2 marks each                      */
