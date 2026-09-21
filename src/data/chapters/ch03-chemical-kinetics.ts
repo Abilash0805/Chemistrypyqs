@@ -523,7 +523,7 @@ export const CH03: Question[] = [
     marks: 2,
     difficulty: "medium",
     topic: "First order kinetics",
-    years: [2024],
+    years: [2024, 2022],
     question:
       "A first order reaction takes 40 minutes for 75% decomposition. Calculate the rate constant. (log 2 = 0.30, log 4 = 0.60)",
     answer: [

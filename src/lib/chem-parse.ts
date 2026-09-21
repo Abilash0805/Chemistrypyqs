@@ -246,7 +246,17 @@ function formulaNodes(token: string): ChemNode[] {
     // followed by a new species or the end, so arithmetic like `2+3` is left
     // alone.
     const charge = rest.match(/^(\d*)([+\-−]{1,3})(?=$|[A-Z])/);
-    if (charge) {
+    // A minus sitting mid-token in front of a new species is ambiguous:
+    // `MnO4-` is an ion but the dash of `2,4,6-Br3C6H2NH2` or `2-Bromopentane`
+    // is a locant. A real charge hangs off a species, so require the character
+    // before it to be a letter or a closing bracket — a digit there means the
+    // dash is punctuation. A trailing sign and a plus are never locants.
+    const locant =
+      charge !== null &&
+      charge[2][0] !== "+" &&
+      /[A-Z]/.test(rest[charge[0].length] ?? "") &&
+      !/[A-Za-z)\]]/.test(token[i + charge[1].length - 1] ?? "");
+    if (charge && !locant) {
       flush();
       out.push({ t: "sup", v: normaliseCharge(charge[1] + charge[2]) });
       i += charge[0].length;

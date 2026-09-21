@@ -277,6 +277,9 @@ export const P2023_56C3: Question[] = [
         label: "A note on the marking scheme",
         text: "The official key for this question prints **(c)**, III > II > I. That is the _(aqueous)_ pattern of the methylamines, not the gas-phase order the question asks for. On the rule the question is testing, the answer is **(d)**. Write the gas-phase order and state the +I reasoning — that is what earns the mark on the same rule in every other paper.",
       },
+      {
+        text: "The board has acknowledged the distinction elsewhere. On the 2022 Term-II paper 56/2/1, which set the same ordering without naming a medium, the scheme accepted **both** answers \"as no medium (aqueous/gaseous) or phase is given\" — so the phase is exactly what decides the order, and this question does name it.",
+      },
     ],
     keyPoint:
       "Gas phase: basicity follows the +I effect alone, so 3° > 2° > 1°. Water reverses parts of it because solvation and sterics enter.",
