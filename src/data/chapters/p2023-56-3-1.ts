@@ -516,6 +516,10 @@ export const P2023_5631: Question[] = [
         label: "Contrast with copper",
         text: "Copper is also 3d^10 in the ground state (3d^10 4s^1), but **Cu^2+ is 3d^9** — partly filled — so copper _(is)_ a transition element. The phrase 'as well as in its oxidised state' in R is what makes zinc the genuine exception.",
       },
+      {
+        label: "Cadmium and mercury too",
+        text: "The 2023 compartment paper put the same assertion to the whole group. Cd is [Kr] 4d^10 5s^2 and Hg is [Xe] 4f^14 5d^10 6s^2, and both lose only their s electrons to give Cd^2+ (4d^10) and Hg^2+ (5d^10). So all three of **Zn, Cd and Hg** sit in the d block without being transition elements, and all three are colourless, diamagnetic and confined to +2. Mercury's Hg2^2+, with its Hg–Hg bond, is the one +1 state in the group, and its d subshell is still full.",
+      },
     ],
   },
 

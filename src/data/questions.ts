@@ -39,6 +39,7 @@ import { P2023_5621 } from "./chapters/p2023-56-2-1";
 import { P2023_5631 } from "./chapters/p2023-56-3-1";
 import { P2023_5641 } from "./chapters/p2023-56-4-1";
 import { P2023_5651 } from "./chapters/p2023-56-5-1";
+import { P2023_56C3 } from "./chapters/p2023-56-c-3";
 
 export const QUESTIONS: Question[] = [
   ...CH01,
@@ -81,6 +82,7 @@ export const QUESTIONS: Question[] = [
   ...P2023_5631,
   ...P2023_5641,
   ...P2023_5651,
+  ...P2023_56C3,
 ];
 
 export const QUESTIONS_BY_CHAPTER = new Map<number, Question[]>(

@@ -340,9 +340,13 @@ export function parseChem(input: string): ChemNode[] {
     if (m[1] !== undefined) {
       nodes.push({ t: "math", v: m[1] });
     } else if (m[2] !== undefined) {
-      nodes.push({ t: "bold", c: chemPass(m[2]) });
+      // Recurse rather than going straight to chemPass, so `$maths$` and
+      // `_(italic)_` still work inside a bold run — e.g. **_(o)_-nitrophenol**.
+      // The non-greedy groups above guarantee the inner text has no matching
+      // closer of its own, so this bottoms out.
+      nodes.push({ t: "bold", c: parseChem(m[2]) });
     } else if (m[3] !== undefined) {
-      nodes.push({ t: "italic", c: chemPass(m[3]) });
+      nodes.push({ t: "italic", c: parseChem(m[3]) });
     } else if (m[4] !== undefined) {
       nodes.push({ t: "text", v: m[4] });
     }

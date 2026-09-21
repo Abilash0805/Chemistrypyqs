@@ -543,7 +543,7 @@ export const CH03: Question[] = [
     marks: 3,
     difficulty: "medium",
     topic: "Arrhenius equation",
-    years: [2024],
+    years: [2023, 2024],
     question:
       "The rate constant of a reaction quadruples when the temperature changes from 300 K to 320 K. Calculate the activation energy. (R = 8.314 J K\u22121 mol\u22121, log 4 = 0.6021)",
     answer: [
