@@ -307,7 +307,7 @@ export const CH10: Question[] = [
     topic: "Proteins",
     years: [2023],
     question:
-      "**Assertion (A):** Proteins are polymers of α-amino acids connected by peptide bonds.\n**Reason (R):** A tetrapeptide contains four peptide bonds.",
+      "**Assertion (A):** Proteins are polymers of α-amino acids connected by a peptide bond.\n**Reason (R):** A tetrapeptide contains 4 amino acids linked by 4 peptide bonds.",
     options: [
       "Both A and R are true and R is the correct explanation of A",
       "Both A and R are true but R is not the correct explanation of A",
