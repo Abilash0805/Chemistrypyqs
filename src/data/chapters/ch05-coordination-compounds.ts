@@ -173,13 +173,16 @@ export const CH05: Question[] = [
     marks: 1,
     difficulty: "medium",
     topic: "Stability",
-    years: [2020, 2014],
+    years: [2023, 2020, 2014],
     question: "Which of the following is the most stable complex?",
     options: ["[Fe(CO)5]", "[Fe(H2O)6]^3+", "[Fe(C2O4)3]^3−", "[Fe(CN)6]^3−"],
     correct: 2,
     answer: [
       {
         text: "**(c) [Fe(C2O4)3]^3−.** The oxalate ion is a **bidentate** ligand and forms five-membered **chelate rings** with the metal. Chelation gives a large positive entropy change (several small ligands are displaced by fewer large ones), so chelate complexes are markedly more stable than comparable complexes of monodentate ligands — the **chelate effect**.",
+      },
+      {
+        text: "One honest caveat, since the comparison is closer than it looks: measured formation constants do **not** actually rank these in this order. [Fe(CN)6]^3− has log β around 43, against roughly 20 for [Fe(C2O4)3]^3−, cyanide being an exceptionally strong field ligand. The question is testing the **chelate effect as NCERT presents it**, so give the chelate — but if a question ever asks you to compare by stability constant, cyanide wins.",
       },
       {
         text: "By the same reasoning, $[\\text{Co(en)}_3]^{3+}$ is more stable than $[\\text{Co(NH}_3)_6]^{3+}$, even though both bind through nitrogen.",

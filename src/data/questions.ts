@@ -36,6 +36,7 @@ import { CH10D } from "./chapters/ch10d-definitions";
 import { P2022T2 } from "./chapters/p2022-term2";
 import { P2023_5611 } from "./chapters/p2023-56-1-1";
 import { P2023_5621 } from "./chapters/p2023-56-2-1";
+import { P2023_5631 } from "./chapters/p2023-56-3-1";
 
 export const QUESTIONS: Question[] = [
   ...CH01,
@@ -75,6 +76,7 @@ export const QUESTIONS: Question[] = [
   ...P2022T2,
   ...P2023_5611,
   ...P2023_5621,
+  ...P2023_5631,
 ];
 
 export const QUESTIONS_BY_CHAPTER = new Map<number, Question[]>(
