@@ -42,7 +42,7 @@ export const P2023_5611: Question[] = [
     answer: [
       { text: "**Osmotic pressure.**" },
       {
-        text: "A polymer or protein has a very large molar mass, so even a saturated solution is extremely dilute in *moles*. The other three properties depend on molality, and for such a solution ΔT_f and ΔT_b come out far too small to measure reliably — a fraction of a millikelvin.",
+        text: "A polymer or protein has a very large molar mass, so even a saturated solution is extremely dilute in _(moles)_. The other three properties depend on molality, and for such a solution ΔT_f and ΔT_b come out far too small to measure reliably — a fraction of a millikelvin.",
       },
       {
         text: "Osmotic pressure is the exception because it is large even at low concentration:",
@@ -191,7 +191,7 @@ export const P2023_5611: Question[] = [
       { equation: "$\\text{Rate} = k[\\mathrm{H_2}]^0[\\mathrm{Cl_2}]^0 = k$" },
       {
         label: "Board erratum",
-        text: "The official Marking Scheme gives (c) but adds *\"Full mark to be awarded for any option\"*. CBSE accepted every answer here, presumably because the question does not state that the light intensity is held constant. The chemistry worth carrying forward is still that a photochemical reaction of this type is zero order.",
+        text: "The official Marking Scheme gives (c) but adds _(\"Full mark to be awarded for any option\")_. CBSE accepted every answer here, presumably because the question does not state that the light intensity is held constant. The chemistry worth carrying forward is still that a photochemical reaction of this type is zero order.",
       },
     ],
   },
@@ -246,7 +246,7 @@ export const P2023_5611: Question[] = [
         ],
       },
       {
-        text: "Distinguish it from the near neighbours: **linkage** isomerism needs an ambidentate ligand such as NO2^− or SCN^− binding through a different atom; **coordination** isomerism needs *two* metal centres swapping ligands; **optical** isomerism needs a non-superimposable mirror image.",
+        text: "Distinguish it from the near neighbours: **linkage** isomerism needs an ambidentate ligand such as NO2^− or SCN^− binding through a different atom; **coordination** isomerism needs _(two)_ metal centres swapping ligands; **optical** isomerism needs a non-superimposable mirror image.",
       },
     ],
     keyPoint:
@@ -278,7 +278,7 @@ export const P2023_5611: Question[] = [
         label: "Why not the others",
         points: [
           "**Finkelstein** swaps a chloride or bromide for **iodide**, using NaI in dry acetone. The reaction is driven by NaCl and NaBr being insoluble in acetone, so it cannot be turned round to make fluorides.",
-          "**Sandmeyer** replaces a diazonium group on an *aromatic* ring with Cl, Br or CN using a copper(I) halide — it makes haloarenes, not alkyl halides, and not fluorides.",
+          "**Sandmeyer** replaces a diazonium group on an _(aromatic)_ ring with Cl, Br or CN using a copper(I) halide — it makes haloarenes, not alkyl halides, and not fluorides.",
           "**Free-radical** halogenation with F2 is violently exothermic and gives a mixture, so it is useless preparatively.",
         ],
       },
@@ -309,7 +309,7 @@ export const P2023_5611: Question[] = [
         text: "This is exactly what makes the test work: a **3°** alcohol clouds at once, a **2°** alcohol in about five minutes, and a **1°** alcohol only on heating.",
       },
       {
-        text: "Careful with the direction of the inequality — the question asks for the order as written, and the answer is the *increasing* series 1° < 2° < 3°.",
+        text: "Careful with the direction of the inequality — the question asks for the order as written, and the answer is the _(increasing)_ series 1° < 2° < 3°.",
       },
     ],
   },
@@ -353,7 +353,7 @@ export const P2023_5611: Question[] = [
     answer: [
       { text: "**Aniline, C6H5NH2.**" },
       {
-        text: "In aniline the nitrogen lone pair is **delocalised into the benzene ring** through resonance, so it is much less available for donation to a proton. The other three are alkyl amines, where the alkyl groups push electron density *towards* nitrogen and make the lone pair more available than in ammonia.",
+        text: "In aniline the nitrogen lone pair is **delocalised into the benzene ring** through resonance, so it is much less available for donation to a proton. The other three are alkyl amines, where the alkyl groups push electron density _(towards)_ nitrogen and make the lone pair more available than in ammonia.",
       },
       {
         text: "There is a second reason: protonating aniline destroys the resonance stabilisation, so the anilinium ion is relatively unstable — which shifts the equilibrium back towards the free amine.",
@@ -393,7 +393,7 @@ export const P2023_5611: Question[] = [
       },
       {
         label: "Board erratum",
-        text: "The printed paper says *\"amylase\"*, which is the enzyme, where it means *\"amylose\"*, the polysaccharide. The Marking Scheme gives (c) and directs that **full marks be awarded if attempted**, noting the printing error.",
+        text: "The printed paper says _(\"amylase\")_, which is the enzyme, where it means _(\"amylose\")_, the polysaccharide. The Marking Scheme gives (c) and directs that **full marks be awarded if attempted**, noting the printing error.",
       },
     ],
   },
@@ -414,7 +414,7 @@ export const P2023_5611: Question[] = [
         text: "The α-helix is one of the two **secondary structures** of a protein, the other being the β-pleated sheet. The polypeptide chain coils into a right-handed spiral held by **intramolecular hydrogen bonds** between the C=O of one residue and the N–H of the residue four places along.",
       },
       {
-        text: "The others are ruled out by what they are: sucrose is a disaccharide, starch a polysaccharide (its amylose does coil, but into a helix stabilised differently and never called an α-helix), and nucleotides are the building blocks of nucleic acids, whose helix is the *double* helix of DNA.",
+        text: "The others are ruled out by what they are: sucrose is a disaccharide, starch a polysaccharide (its amylose does coil, but into a helix stabilised differently and never called an α-helix), and nucleotides are the building blocks of nucleic acids, whose helix is the _(double)_ helix of DNA.",
       },
     ],
   },
@@ -447,7 +447,7 @@ export const P2023_5611: Question[] = [
       },
       {
         label: "Why R is not the explanation",
-        text: "The two statements rest on **opposite** electronic effects. A follows from the lone pair being *donated into the ring*; R follows from that same lone pair being *tied up by AlCl3* so it cannot be donated at all. R describes a limitation of aniline, not the reason for its directing power — so the answer is (b), not (a).",
+        text: "The two statements rest on **opposite** electronic effects. A follows from the lone pair being _(donated into the ring)_; R follows from that same lone pair being _(tied up by AlCl3)_ so it cannot be donated at all. R describes a limitation of aniline, not the reason for its directing power — so the answer is (b), not (a).",
       },
     ],
     keyPoint:
@@ -507,7 +507,7 @@ export const P2023_5611: Question[] = [
     answer: [
       { text: "**(a)** — both true, and R is the correct explanation of A." },
       {
-        text: "**Molecularity** is the number of reacting species that come together in a single elementary step. The equation as written shows one H2 and one Br2 — two species — so the molecularity *appears* to be 2, which is **bimolecular**.",
+        text: "**Molecularity** is the number of reacting species that come together in a single elementary step. The equation as written shows one H2 and one Br2 — two species — so the molecularity _(appears)_ to be 2, which is **bimolecular**.",
       },
       {
         text: "R states exactly that, so it is both true and the reason A holds.",
@@ -545,7 +545,7 @@ export const P2023_5611: Question[] = [
       },
       { equation: "p = K_H × x" },
       {
-        text: "Here p is the partial pressure of the gas, x its mole fraction in solution, and K_H the **Henry's law constant**. A larger K_H means a *less* soluble gas, and K_H rises with temperature — which is why dissolved gases are driven out of water on warming.",
+        text: "Here p is the partial pressure of the gas, x its mole fraction in solution, and K_H the **Henry's law constant**. A larger K_H means a _(less)_ soluble gas, and K_H rises with temperature — which is why dissolved gases are driven out of water on warming.",
       },
       {
         label: "Applications — any one earns the mark",
@@ -572,7 +572,7 @@ export const P2023_5611: Question[] = [
       { text: "**'B' is the strong electrolyte.**" },
       {
         label: "Why the size of the rise gives it away",
-        text: "Molar conductivity rises on dilution for *both* kinds of electrolyte, but for completely different reasons and by completely different amounts.",
+        text: "Molar conductivity rises on dilution for _(both)_ kinds of electrolyte, but for completely different reasons and by completely different amounts.",
       },
       {
         table: [
@@ -626,7 +626,7 @@ export const P2023_5611: Question[] = [
         text: "**κ = 11.47 × 10^−3 S cm^−1** (equivalently 1.147 S m^−1).",
       },
       {
-        text: "The quantity l/A is the **cell constant**, here 50/0.785 = 63.7 cm^−1. Note the concentration 0.05 mol L^−1 is not needed for the conductivity itself — it would only be wanted if the question went on to ask for the *molar* conductivity Λ_m = κ × 1000/c.",
+        text: "The quantity l/A is the **cell constant**, here 50/0.785 = 63.7 cm^−1. Note the concentration 0.05 mol L^−1 is not needed for the conductivity itself — it would only be wanted if the question went on to ask for the _(molar)_ conductivity Λ_m = κ × 1000/c.",
       },
     ],
   },
@@ -732,7 +732,7 @@ export const P2023_5611: Question[] = [
         ],
       },
       {
-        text: "Hydrogen bonding is the *larger* effect setting alcohol boiling points overall, but it is much the same across these three isomers, so the trend within the set is decided by surface area.",
+        text: "Hydrogen bonding is the _(larger)_ effect setting alcohol boiling points overall, but it is much the same across these three isomers, so the trend within the set is decided by surface area.",
       },
     ],
   },
@@ -763,7 +763,7 @@ export const P2023_5611: Question[] = [
       { equation: "CH3CH2–OH2^+ <=> CH3–CH2^+ + H2O" },
       {
         label: "Step 3 — loss of a β-proton (fast)",
-        text: "A base — another alcohol molecule or water — removes a proton from the carbon *next to* the positive centre, and that pair of electrons becomes the π bond.",
+        text: "A base — another alcohol molecule or water — removes a proton from the carbon _(next to)_ the positive centre, and that pair of electrons becomes the π bond.",
       },
       { equation: "CH3–CH2^+ <=> CH2=CH2 + H^+" },
       {
@@ -778,7 +778,7 @@ export const P2023_5611: Question[] = [
           "C6H5OH ->[(i) CHCl3 + aq. NaOH][(ii) H3O^+] 2-HO–C6H4–CHO",
       },
       {
-        text: "The electrophile is **dichlorocarbene**, :CCl2, generated when NaOH removes a proton from chloroform. It attacks the *ortho* position of the phenoxide ring; the resulting benzal chloride side group is then hydrolysed by the alkali to the –CHO group, and acidification finally frees the phenolic –OH.",
+        text: "The electrophile is **dichlorocarbene**, :CCl2, generated when NaOH removes a proton from chloroform. It attacks the _(ortho)_ position of the phenoxide ring; the resulting benzal chloride side group is then hydrolysed by the alkali to the –CHO group, and acidification finally frees the phenolic –OH.",
       },
       {
         text: "Substituting the carbonate ion source CCl4 for CHCl3 gives the closely related **Kolbe** route to salicylic acid instead.",
@@ -976,7 +976,7 @@ export const P2023_5611: Question[] = [
       { label: "(d) Propene -> propan-1-ol" },
       { equation: "CH3–CH=CH2 ->[(i) B2H6 or (H–BH2)2][(ii) NaOH / H2O2] CH3–CH2–CH2–OH" },
       {
-        text: "**Hydroboration–oxidation.** The boron adds to the *less* substituted carbon, so the –OH ends up there too — an **anti-Markovnikov** addition, which is the only way to reach the *primary* alcohol. Direct acid hydration would follow Markovnikov's rule and give propan-2-ol instead.",
+        text: "**Hydroboration–oxidation.** The boron adds to the _(less)_ substituted carbon, so the –OH ends up there too — an **anti-Markovnikov** addition, which is the only way to reach the _(primary)_ alcohol. Direct acid hydration would follow Markovnikov's rule and give propan-2-ol instead.",
       },
       {
         text: "Only three are required; the scheme accepts any correct alternative route for each.",
@@ -1222,7 +1222,7 @@ export const P2023_5611: Question[] = [
       { text: "**Pentaamminechloridocobalt(III) chloride**" },
       {
         points: [
-          "Ligands are named first, in **alphabetical** order — ammine (a) before chlorido (c) — with the multiplying prefix *penta* ignored for alphabetising.",
+          "Ligands are named first, in **alphabetical** order — ammine (a) before chlorido (c) — with the multiplying prefix _(penta)_ ignored for alphabetising.",
           "The oxidation state of cobalt: x + 5(0) + (−1) = +2 total for the cation... the complex ion carries +2, so x − 1 = +2, giving **x = +3**.",
           "The counter-ion, chloride, is named last as a separate word.",
         ],
@@ -1384,7 +1384,7 @@ export const P2023_5611: Question[] = [
         ],
       },
       {
-        text: "Same starting configuration, opposite behaviour — because for chromium the stable configuration lies one electron *below* d^4, and for manganese one electron *above* it.",
+        text: "Same starting configuration, opposite behaviour — because for chromium the stable configuration lies one electron _(below)_ d^4, and for manganese one electron _(above)_ it.",
       },
       { label: "(iv) Zinc has the lowest enthalpy of atomisation" },
       {

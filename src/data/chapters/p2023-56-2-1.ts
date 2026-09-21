@@ -42,7 +42,7 @@ export const P2023_5621: Question[] = [
       },
       { equation: "CH3CH2CH2–Br + KOH ->[ethanol][Δ] CH3–CH=CH2 + KBr + H2O" },
       {
-        text: "Option (d) is the trap. **Dehydration** means loss of *water*, which is what happens to an alcohol with concentrated H2SO4 — not to a halide. And it is not substitution, because nothing replaces the halogen.",
+        text: "Option (d) is the trap. **Dehydration** means loss of _(water)_, which is what happens to an alcohol with concentrated H2SO4 — not to a halide. And it is not substitution, because nothing replaces the halogen.",
       },
       {
         text: "Remember the solvent decides the path: **alcoholic** KOH gives elimination, **aqueous** KOH gives substitution to the alcohol.",
@@ -134,7 +134,7 @@ export const P2023_5621: Question[] = [
     answer: [
       { text: "**(a) only.**" },
       {
-        text: "Both routes would give the *same* ether on paper, but Williamson's synthesis proceeds by **S_N2**, and S_N2 is extremely sensitive to crowding at the carbon being attacked.",
+        text: "Both routes would give the _(same)_ ether on paper, but Williamson's synthesis proceeds by **S_N2**, and S_N2 is extremely sensitive to crowding at the carbon being attacked.",
       },
       {
         label: "Why (a) works",
@@ -315,10 +315,10 @@ export const P2023_5621: Question[] = [
       { text: "**Pentaamminenitrito-O-cobalt(III) ion**" },
       {
         points: [
-          "Ligands alphabetically: **ammine** before **nitrito**, with the prefix *penta* ignored for alphabetising.",
-          "The ligand is written **ONO**, not NO2, which tells us it is bonded through **oxygen** — hence *nitrito-O* (written *nitrito-κO* in strict modern IUPAC).",
+          "Ligands alphabetically: **ammine** before **nitrito**, with the prefix _(penta)_ ignored for alphabetising.",
+          "The ligand is written **ONO**, not NO2, which tells us it is bonded through **oxygen** — hence _(nitrito-O)_ (written _(nitrito-κO)_ in strict modern IUPAC).",
           "Oxidation state: x + 5(0) + (−1) = +2, so **x = +3**.",
-          "The whole species is a cation, so it ends in *ion* with no separate counter-ion named.",
+          "The whole species is a cation, so it ends in _(ion)_ with no separate counter-ion named.",
         ],
       },
       {
@@ -356,7 +356,7 @@ export const P2023_5621: Question[] = [
       },
       { text: "**Example: [Co(ox)3]^3−** — three oxalate ions, each binding through two oxygen atoms to give three five-membered rings. [Ni(en)3]^2+ and [Ca(EDTA)]^2− are equally good answers." },
       {
-        text: "Such complexes are unusually stable, an effect known as the **chelate effect**. Once one end of the ligand is attached the other is held right next to the metal, so it binds readily, and releasing the ligand needs *both* bonds to break at once. Five- and six-membered rings are the most stable.",
+        text: "Such complexes are unusually stable, an effect known as the **chelate effect**. Once one end of the ligand is attached the other is held right next to the metal, so it binds readily, and releasing the ligand needs _(both)_ bonds to break at once. Five- and six-membered rings are the most stable.",
       },
       {
         text: "This stability is what makes EDTA useful for softening hard water and for treating lead poisoning.",
@@ -491,7 +491,7 @@ export const P2023_5621: Question[] = [
         text: "In the ortho isomer the –OH hydrogen reaches the neighbouring nitro oxygen and bonds to it **inside the same molecule**. That hydrogen is then unavailable to bond to other molecules, so the molecules barely attract one another and the solid is easily vaporised.",
       },
       {
-        text: "In the para isomer the two groups are too far apart for that, so each –OH bonds to a *neighbouring* molecule. The resulting network has to be broken before anything can evaporate, which takes far more energy.",
+        text: "In the para isomer the two groups are too far apart for that, so each –OH bonds to a _(neighbouring)_ molecule. The resulting network has to be broken before anything can evaporate, which takes far more energy.",
       },
       {
         text: "This difference is genuinely useful: a mixture of the two isomers is separated by **steam distillation**, the ortho isomer coming over with the steam and the para isomer staying behind.",
@@ -520,7 +520,7 @@ export const P2023_5621: Question[] = [
         text: "**Products: 2-methylanisole and 4-methylanisole**, with 4-methylanisole the major one.",
       },
       {
-        text: "Note that an ether *can* undergo Friedel-Crafts where aniline cannot: the ether oxygen is a much weaker Lewis base than an amino nitrogen, so it does not tie up the AlCl3 catalyst.",
+        text: "Note that an ether _(can)_ undergo Friedel-Crafts where aniline cannot: the ether oxygen is a much weaker Lewis base than an amino nitrogen, so it does not tie up the AlCl3 catalyst.",
       },
       { label: "(ii) Oxidation of phenol" },
       {
@@ -988,7 +988,7 @@ export const P2023_5621: Question[] = [
         text: "Ce^4+ has the configuration [Xe] 4f^0. Gaining one electron takes it to Ce^3+, [Xe] 4f^1 — the stable state that essentially all lanthanoids prefer. Since taking an electron is exactly what an oxidising agent does, Ce^4+ is a good one, with E° for Ce^4+/Ce^3+ around +1.74 V.",
       },
       {
-        text: "This is why ceric ammonium sulphate is used as an oxidising titrant in volumetric analysis. **Eu^2+** is the mirror image: it readily loses an electron to reach the +3 state, so it is a strong *reducing* agent.",
+        text: "This is why ceric ammonium sulphate is used as an oxidising titrant in volumetric analysis. **Eu^2+** is the mirror image: it readily loses an electron to reach the +3 state, so it is a strong _(reducing)_ agent.",
       },
       { label: "(II) Lanthanoids compared with actinoids" },
       {
@@ -1127,7 +1127,7 @@ export const P2023_5621: Question[] = [
         text: "Two details worth holding on to. Diazotisation must be done at **273–278 K** — the diazonium salt decomposes to the phenol above about 278 K. And ethanol acts here as a **reducing agent**, replacing the –N2^+ group with –H and being oxidised to ethanal itself.",
       },
       {
-        text: "This sequence is the standard way to *remove* a substituent from a ring: the –NO2 group can be put on where it directs the chemistry you want, then converted through the amine and the diazonium salt and finally stripped off.",
+        text: "This sequence is the standard way to _(remove)_ a substituent from a ring: the –NO2 group can be put on where it directs the chemistry you want, then converted through the amine and the diazonium salt and finally stripped off.",
       },
       { label: "(II) Why aniline fails Friedel-Crafts" },
       {

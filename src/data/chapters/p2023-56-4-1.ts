@@ -224,7 +224,7 @@ export const P2023_5641: Question[] = [
         text: "Option (a), 1-aminopropane, has three carbons and would need one to appear from nowhere. Options (c) and (d) are **oxidation or hydrolysis** products, not reduction products.",
       },
       {
-        text: "LiAlH4 or catalytic hydrogenation over nickel do the same job. Contrast this with **Hoffmann bromamide degradation**, which starts from an amide and *loses* a carbon — the two routes go in opposite directions on chain length, and questions often turn on which is which.",
+        text: "LiAlH4 or catalytic hydrogenation over nickel do the same job. Contrast this with **Hoffmann bromamide degradation**, which starts from an amide and _(loses)_ a carbon — the two routes go in opposite directions on chain length, and questions often turn on which is which.",
       },
     ],
   },
@@ -354,7 +354,7 @@ export const P2023_5641: Question[] = [
     answer: [
       { text: "**Cross-aldol condensation.**" },
       {
-        text: "An aldol condensation between **two different** carbonyl compounds is called a *cross* aldol. Here benzaldehyde and propanone are different molecules, so (b) rather than (a).",
+        text: "An aldol condensation between **two different** carbonyl compounds is called a _(cross)_ aldol. Here benzaldehyde and propanone are different molecules, so (b) rather than (a).",
       },
       {
         label: "Why it gives a single clean product",
@@ -484,7 +484,7 @@ export const P2023_5641: Question[] = [
         text: "More ions per mole of electrolyte means each mole conducts **better**, so Λ_m goes up.",
       },
       {
-        text: "The statement that genuinely *decreases* on dilution is **conductivity κ**, which counts ions per unit volume rather than per mole. Confusing the two is what this question is built on:",
+        text: "The statement that genuinely _(decreases)_ on dilution is **conductivity κ**, which counts ions per unit volume rather than per mole. Confusing the two is what this question is built on:",
       },
       {
         table: [
@@ -524,7 +524,7 @@ export const P2023_5641: Question[] = [
         text: "The real cause of the identical radii is the **lanthanoid contraction**. Hafnium comes immediately after the fourteen lanthanoids, and across that series the 4f electrons shield the growing nuclear charge very poorly, so the radii shrink steadily. By the time hafnium is reached, that accumulated contraction has cancelled out the increase expected from being a whole period lower than zirconium.",
       },
       {
-        text: "So the chain of causation runs: **lanthanoid contraction → identical radii → similar properties.** R states the *consequence* of A, not its cause. That makes both statements true but leaves R unable to explain A — which is (b).",
+        text: "So the chain of causation runs: **lanthanoid contraction → identical radii → similar properties.** R states the _(consequence)_ of A, not its cause. That makes both statements true but leaves R unable to explain A — which is (b).",
       },
       {
         text: "The practical upshot is real: zirconium and hafnium always occur together and are separated only with difficulty, which matters because zirconium is used for nuclear reactor cladding (it barely absorbs neutrons) while hafnium absorbs them strongly and must be removed.",
@@ -648,7 +648,7 @@ export const P2023_5641: Question[] = [
         ],
       },
       {
-        text: "Ethanol + water and carbon disulphide + acetone behave the same way. The contrast is **chloroform + acetone**, which shows a *negative* deviation because those two form a hydrogen bond to each other that neither had on its own.",
+        text: "Ethanol + water and carbon disulphide + acetone behave the same way. The contrast is **chloroform + acetone**, which shows a _(negative)_ deviation because those two form a hydrogen bond to each other that neither had on its own.",
       },
     ],
   },
@@ -813,23 +813,23 @@ export const P2023_5641: Question[] = [
       { text: "**Tetraamminechloridonitrito-N-cobalt(III) chloride**" },
       {
         points: [
-          "Ligands in **alphabetical** order: **ammine**, then **chlorido**, then **nitrito** — the multiplying prefix *tetra* is ignored for alphabetising.",
-          "Written as **NO2** rather than ONO, the ligand is bonded through **nitrogen**, hence *nitrito-N* (*nitrito-κN* in strict modern usage).",
+          "Ligands in **alphabetical** order: **ammine**, then **chlorido**, then **nitrito** — the multiplying prefix _(tetra)_ is ignored for alphabetising.",
+          "Written as **NO2** rather than ONO, the ligand is bonded through **nitrogen**, hence _(nitrito-N)_ (_(nitrito-κN)_ in strict modern usage).",
           "Cobalt's oxidation state: x + 4(0) + (−1) + (−1) = +1, so **x = +3**.",
           "The counter-ion, chloride, is named last as a separate word.",
         ],
       },
       {
-        text: "Bonded through oxygen instead, the same formula would be written [Co(NH3)4Cl(ONO)]Cl and named *nitrito-O* — the two are **linkage isomers**.",
+        text: "Bonded through oxygen instead, the same formula would be written [Co(NH3)4Cl(ONO)]Cl and named _(nitrito-O)_ — the two are **linkage isomers**.",
       },
       { label: "(b) [PtCl2(en)2]^2+" },
       { text: "**Dichloridobis(ethane-1,2-diamine)platinum(IV) ion**" },
       {
         points: [
           "Alphabetical order: **chlorido** before **ethane-1,2-diamine**.",
-          "**bis**, not *di*, because the ligand's own name already contains numerals — the same rule gives *tris*, *tetrakis* and so on.",
+          "**bis**, not _(di)_, because the ligand's own name already contains numerals — the same rule gives _(tris)_, _(tetrakis)_ and so on.",
           "Platinum's oxidation state: x + 2(−1) + 2(0) = +2, so **x = +4**.",
-          "The species is a cation with no counter-ion given, so the name ends in *ion*.",
+          "The species is a cation with no counter-ion given, so the name ends in _(ion)_.",
         ],
       },
       {
@@ -967,10 +967,10 @@ export const P2023_5641: Question[] = [
         text: "Because the **(±)** prefix means it is a **racemic mixture** — an equimolar mixture of the two enantiomers of butan-2-ol.",
       },
       {
-        text: "Each individual molecule *is* chiral: C-2 carries H, OH, CH3 and C2H5, four different groups. But the d form rotates plane-polarised light clockwise and the l form rotates it anticlockwise by **exactly the same angle**. With equal amounts of each, the two rotations **cancel exactly** and the net rotation is zero.",
+        text: "Each individual molecule _(is)_ chiral: C-2 carries H, OH, CH3 and C2H5, four different groups. But the d form rotates plane-polarised light clockwise and the l form rotates it anticlockwise by **exactly the same angle**. With equal amounts of each, the two rotations **cancel exactly** and the net rotation is zero.",
       },
       {
-        text: "This is **external compensation**, and it is why a racemic mixture is described as optically inactive rather than achiral. Contrast a **meso** compound, which is inactive by *internal* compensation — it has chiral centres but an internal plane of symmetry, so a single molecule is already achiral.",
+        text: "This is **external compensation**, and it is why a racemic mixture is described as optically inactive rather than achiral. Contrast a **meso** compound, which is inactive by _(internal)_ compensation — it has chiral centres but an internal plane of symmetry, so a single molecule is already achiral.",
       },
       { label: "(c) Why chloroform is kept in dark bottles" },
       {

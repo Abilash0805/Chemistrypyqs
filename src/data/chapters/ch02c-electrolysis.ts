@@ -51,7 +51,7 @@ export const CH02C: Question[] = [
         text: "The overall result is the **chlor-alkali process**: Cl2 at the anode, H2 at the cathode, and NaOH left in solution.",
       },
     ],
-    keyPoint: "Overvoltage is kinetic: E° tells you what *can* happen, overvoltage tells you what actually does.",
+    keyPoint: "Overvoltage is kinetic: E° tells you what _(can)_ happen, overvoltage tells you what actually does.",
   },
   {
     id: "e2-x2",

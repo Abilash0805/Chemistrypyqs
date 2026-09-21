@@ -79,7 +79,7 @@ export const CH06D: Question[] = [
         ],
       },
       {
-        text: "For the same alkyl group the boiling point rises **RI > RBr > RCl > RF**, which is the order of increasing molecular size and polarisability — note that it is *not* the order of bond polarity, which runs the other way.",
+        text: "For the same alkyl group the boiling point rises **RI > RBr > RCl > RF**, which is the order of increasing molecular size and polarisability — note that it is _(not)_ the order of bond polarity, which runs the other way.",
       },
     ],
   },

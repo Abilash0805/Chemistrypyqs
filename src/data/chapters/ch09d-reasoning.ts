@@ -66,7 +66,7 @@ export const CH09D: Question[] = [
         text: "**p-methylaniline > aniline > p-nitroaniline**",
       },
       {
-        text: "Remember that a **larger pKb means a weaker base**, so this is the order of *increasing* basic strength read backwards.",
+        text: "Remember that a **larger pKb means a weaker base**, so this is the order of _(increasing)_ basic strength read backwards.",
       },
       {
         table: [

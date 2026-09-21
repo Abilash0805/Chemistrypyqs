@@ -36,7 +36,7 @@ export const P2023_5631: Question[] = [
     ],
     correct: 2,
     answer: [
-      { text: "**They have the same specific rotation** — this is the statement that is *not* true." },
+      { text: "**They have the same specific rotation** — this is the statement that is _(not)_ true." },
       {
         text: "Enantiomers are non-superimposable mirror images. Every **scalar** physical property is identical, because the two molecules have exactly the same bonds and the same energy. What differs is anything with a **handedness** to it.",
       },
@@ -276,7 +276,7 @@ export const P2023_5631: Question[] = [
         text: "Manganese wins with seven available electrons, all of them unpaired or in the 4s, which is what makes **KMnO4** possible.",
       },
       {
-        text: "Iron is the instructive exception. It has *eight* electrons in 3d and 4s, but two of its 3d electrons are already **paired**, and paired d electrons are held much more tightly. Iron therefore stops at +6 (in ferrate, FeO4^2−) and is common only at +2 and +3. From manganese onwards the maximum oxidation state falls steadily for exactly this reason.",
+        text: "Iron is the instructive exception. It has _(eight)_ electrons in 3d and 4s, but two of its 3d electrons are already **paired**, and paired d electrons are held much more tightly. Iron therefore stops at +6 (in ferrate, FeO4^2−) and is common only at +2 and +3. From manganese onwards the maximum oxidation state falls steadily for exactly this reason.",
       },
     ],
   },
@@ -424,7 +424,7 @@ export const P2023_5631: Question[] = [
         text: "**Overpotential** is the extra voltage, above the thermodynamic value, that a gas needs before it is actually evolved on a given electrode. For **oxygen on most anode materials the overpotential is large** — several tenths of a volt — because the four-electron transfer and the O–O bond formation are kinetically slow. Chlorine's overpotential is very small.",
       },
       {
-        text: "Adding it in, the *effective* voltage needed to release oxygen exceeds that for chlorine, so chlorine comes off instead. R is therefore both true and precisely the reason A is true.",
+        text: "Adding it in, the _(effective)_ voltage needed to release oxygen exceeds that for chlorine, so chlorine comes off instead. R is therefore both true and precisely the reason A is true.",
       },
       {
         text: "This is not a curiosity — it is the basis of the **chlor-alkali industry**, which makes chlorine, hydrogen and sodium hydroxide from brine. It is also a reminder that electrode reactions are decided by **kinetics as well as thermodynamics**; E° alone can mislead.",
@@ -514,7 +514,7 @@ export const P2023_5631: Question[] = [
       },
       {
         label: "Contrast with copper",
-        text: "Copper is also 3d^10 in the ground state (3d^10 4s^1), but **Cu^2+ is 3d^9** — partly filled — so copper *is* a transition element. The phrase 'as well as in its oxidised state' in R is what makes zinc the genuine exception.",
+        text: "Copper is also 3d^10 in the ground state (3d^10 4s^1), but **Cu^2+ is 3d^9** — partly filled — so copper _(is)_ a transition element. The phrase 'as well as in its oxidised state' in R is what makes zinc the genuine exception.",
       },
     ],
   },
@@ -627,7 +627,7 @@ export const P2023_5631: Question[] = [
         text: "Because X has the more negative potential, it loses electrons more readily than iron and is consumed first. Even where the coating is **scratched or broken**, the exposed iron is still protected: X and Fe form a tiny galvanic cell in which X is the anode and iron the cathode, so the iron does not corrode.",
       },
       {
-        text: "Y is the opposite case and is the more dangerous of the two. An unbroken layer of Y keeps water and air out, but the moment it is scratched the iron becomes the **anode** of the resulting cell and rusts *faster* than bare iron would.",
+        text: "Y is the opposite case and is the more dangerous of the two. An unbroken layer of Y keeps water and air out, but the moment it is scratched the iron becomes the **anode** of the resulting cell and rusts _(faster)_ than bare iron would.",
       },
       {
         text: "This is exactly the difference between **galvanising** with zinc, E° = −0.76 V, which protects sacrificially, and tin plating, E° = −0.14 V, where a scratched tin can rusts rapidly. Y's value identifies it as tin.",
@@ -830,7 +830,7 @@ export const P2023_5631: Question[] = [
         text: "Two points decide this chain. First, **KCN, not AgCN** — potassium cyanide is ionic, so the **carbon** end attacks and a **nitrile** results, adding a carbon to the chain. AgCN is largely covalent and would give the isocyanide instead.",
       },
       {
-        text: "Second, an **aliphatic** primary amine with nitrous acid gives an unstable diazonium salt that immediately loses nitrogen, so the product is the **alcohol** with brisk effervescence of N2. Only an *aromatic* diazonium salt is stable enough at 273 K to be isolated and used further, as it is in part (i).",
+        text: "Second, an **aliphatic** primary amine with nitrous acid gives an unstable diazonium salt that immediately loses nitrogen, so the product is the **alcohol** with brisk effervescence of N2. Only an _(aromatic)_ diazonium salt is stable enough at 273 K to be isolated and used further, as it is in part (i).",
       },
     ],
     keyPoint:
@@ -987,7 +987,7 @@ export const P2023_5631: Question[] = [
       { label: "(b) With concentrated HNO3 — saccharic acid" },
       { equation: "CHO–(CHOH)4–CH2OH ->[conc. HNO3] HOOC–(CHOH)4–COOH" },
       {
-        text: "**Product: HOOC–(CHOH)4–COOH, saccharic acid (glucaric acid).** Nitric acid is a strong oxidising agent and oxidises **both** ends — the aldehyde *and* the primary alcohol — to carboxylic acids. This proves the –CH2OH group is present.",
+        text: "**Product: HOOC–(CHOH)4–COOH, saccharic acid (glucaric acid).** Nitric acid is a strong oxidising agent and oxidises **both** ends — the aldehyde _(and)_ the primary alcohol — to carboxylic acids. This proves the –CH2OH group is present.",
       },
       { label: "(c) With bromine water — gluconic acid" },
       { equation: "CHO–(CHOH)4–CH2OH ->[Br2 water] HOCH2–(CHOH)4–COOH" },
@@ -1092,7 +1092,7 @@ export const P2023_5631: Question[] = [
       { text: "**Pentaamminechloridocobalt(III) sulphate**" },
       {
         points: [
-          "Ligands alphabetically — **ammine** before **chlorido**, the prefix *penta* ignored for alphabetising.",
+          "Ligands alphabetically — **ammine** before **chlorido**, the prefix _(penta)_ ignored for alphabetising.",
           "Cobalt's oxidation state: x + 5(0) + (−1) = +2, so **x = +3**.",
           "The counter-ion, sulphate, is named last as a separate word.",
         ],
@@ -1395,7 +1395,7 @@ export const P2023_5631: Question[] = [
         text: "Conductivity κ is the conductance of **unit volume** of solution. Dilution does not change how many ions exist in total, but it spreads them through more solvent, so any given cubic centimetre contains fewer charge carriers and conducts less well.",
       },
       {
-        text: "This is the exact opposite of what happens to **molar conductivity**, which *rises* on dilution because it is reckoned per mole rather than per unit volume — the same ions, now less hindered by one another, each carry more current. Both statements are true at once.",
+        text: "This is the exact opposite of what happens to **molar conductivity**, which _(rises)_ on dilution because it is reckoned per mole rather than per unit volume — the same ions, now less hindered by one another, each carry more current. Both statements are true at once.",
       },
     ],
     keyPoint:

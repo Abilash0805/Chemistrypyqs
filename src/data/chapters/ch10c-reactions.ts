@@ -152,7 +152,7 @@ export const CH10C: Question[] = [
         text: "Fructose is a **ketose** and has no –CHO group of its own. But Tollens' reagent is alkaline, and in dilute alkali a ketose isomerises to the corresponding aldoses through an **enediol** intermediate. The aldose formed is then oxidised, so fructose reduces Tollens' and Fehling's reagents even though it is a ketone.",
       },
       {
-        text: "This is exactly why **bromine water** — which is *not* alkaline — is the reagent that separates them: it oxidises glucose to gluconic acid and leaves fructose alone.",
+        text: "This is exactly why **bromine water** — which is _(not)_ alkaline — is the reagent that separates them: it oxidises glucose to gluconic acid and leaves fructose alone.",
       },
     ],
   },
@@ -178,7 +178,7 @@ export const CH10C: Question[] = [
       },
       {
         label: "The reason",
-        text: "In **sucrose** the linkage ties up the anomeric carbon of glucose (C-1) *and* the anomeric carbon of fructose (C-2). Neither ring can open, so no free –CHO or keto group is ever available and the sugar cannot reduce Tollens' or Fehling's reagent.",
+        text: "In **sucrose** the linkage ties up the anomeric carbon of glucose (C-1) _(and)_ the anomeric carbon of fructose (C-2). Neither ring can open, so no free –CHO or keto group is ever available and the sugar cannot reduce Tollens' or Fehling's reagent.",
       },
       {
         text: "In **maltose** only one anomeric carbon is used by the linkage. The second glucose still has a free anomeric –OH, so its ring opens to give an aldehyde group and the sugar is reducing. Maltose also shows **mutarotation** for the same reason.",

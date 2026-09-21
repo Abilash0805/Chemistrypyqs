@@ -332,7 +332,7 @@ export const CH02: Question[] = [
         text: "**(a) Both A and R are true, and R is the correct explanation of A.** Conductivity \u03BA measures the conductance of **unit volume** of solution, so it depends directly on how many ions sit in that volume. Diluting the solution spreads the same ions through more solvent, so the number in any given cubic centimetre falls and **\u03BA decreases**. R states exactly that mechanism, so it is the reason A holds.",
       },
       {
-        text: "Do not confuse this with **molar** conductivity, which *increases* on dilution because it is measured per mole of electrolyte rather than per unit volume. Both statements are true at once — they simply count different things.",
+        text: "Do not confuse this with **molar** conductivity, which _(increases)_ on dilution because it is measured per mole of electrolyte rather than per unit volume. Both statements are true at once — they simply count different things.",
       },
     ],
   },
