@@ -98,6 +98,14 @@ const NOT_A_FORMULA = new Set([
 ]);
 
 /**
+ * A generic-group placeholder standing in for a real substituent at the START
+ * of a formula: the R of `RCH2OH`, its primed variants, and the X of a generic
+ * halide. These are not element symbols, so without this the whole token is
+ * rejected and `RCONH2` renders with no subscripts at all.
+ */
+const GENERIC_GROUP = /^(?:R['\u2019]{0,2}|X)(?![a-z])/;
+
+/**
  * A token is treated as a formula when it is built only out of element
  * symbols, digits, brackets, dots and charge markers — and carries at least
  * one thing worth typesetting (a digit, a charge, a state symbol or a dot
@@ -118,6 +126,10 @@ function isFormula(token: string): boolean {
   let i = 0;
   // optional stoichiometric coefficient
   while (i < token.length && /\d/.test(token[i])) i++;
+  // A leading R or X is a stand-in for a group, not an element. It does not
+  // count as having seen an element, so a bare `R2` is still not a formula.
+  const gen = token.slice(i).match(GENERIC_GROUP);
+  if (gen) i += gen[0].length;
   let sawElement = false;
   while (i < token.length) {
     const ch = token[i];
@@ -163,6 +175,20 @@ function formulaNodes(token: string): ChemNode[] {
   let i = 0;
   // Leading stoichiometric coefficient stays full size.
   while (i < token.length && /\d/.test(token[i])) buf += token[i++];
+  // A leading generic group is plain text, and any digit straight after it is
+  // a count of those groups — the 2 of `R2CHOH` — so it subscripts like any
+  // other count. The rest of the token then parses as usual.
+  const gen = token.slice(i).match(GENERIC_GROUP);
+  if (gen) {
+    buf += gen[0];
+    i += gen[0].length;
+    const count = token.slice(i).match(/^\d+/);
+    if (count) {
+      flush();
+      out.push({ t: "sub", v: count[0] });
+      i += count[0].length;
+    }
+  }
 
   // A lone element carrying digits and a sign is an ion charge, not a count:
   // `Ca2+` is Ca²⁺, never Ca₂⁺. Without this the element-plus-count rule below

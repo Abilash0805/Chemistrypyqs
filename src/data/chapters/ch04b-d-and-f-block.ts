@@ -170,7 +170,7 @@ export const CH04B: Question[] = [
   {
     id: "d4-s13",
     chapter: 4,
-    type: "short",
+    type: "numerical",
     marks: 2,
     difficulty: "medium",
     topic: "Magnetic properties",
