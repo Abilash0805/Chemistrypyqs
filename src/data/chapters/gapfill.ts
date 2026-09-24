@@ -591,7 +591,7 @@ export const GAPFILL: Question[] = [
       },
       {
         label: "(b) Why a small temperature rise has a large effect",
-        text: "Because temperature does not raise every molecule's energy a little — it **sharply increases the fraction of molecules whose energy exceeds Ea**.",
+        text: "Because temperature does not raise every molecule's energy a little — it **sharply increases the fraction of molecules whose energy exceeds Ea**. The observed ratio of the rate constants ten degrees apart is the **temperature coefficient**, and for most reactions near room temperature it comes out at about **2 to 3** — which is what part (c) works out.",
       },
       {
         text: "On a Maxwell–Boltzmann distribution, the molecules that can react are those in the **high-energy tail** beyond Ea. That tail is thin, so a small shift of the whole curve to the right roughly **doubles the area** under it. Near room temperature a rise of 10 K commonly doubles the rate, even though the average kinetic energy rises by only about 3 %.",

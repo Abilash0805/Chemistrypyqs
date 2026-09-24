@@ -41,6 +41,7 @@ import { P2023_5641 } from "./chapters/p2023-56-4-1";
 import { P2023_5651 } from "./chapters/p2023-56-5-1";
 import { P2022_5621 } from "./chapters/p2022-t2-5621";
 import { GAPFILL } from "./chapters/gapfill";
+import { GAPFILL2 } from "./chapters/gapfill2";
 import { P2022_REST } from "./chapters/p2022-t2-rest";
 import { P2023_56C3 } from "./chapters/p2023-56-c-3";
 
@@ -88,6 +89,7 @@ export const QUESTIONS: Question[] = [
   ...P2022_5621,
   ...P2022_REST,
   ...GAPFILL,
+  ...GAPFILL2,
   ...P2023_56C3,
 ];
 
