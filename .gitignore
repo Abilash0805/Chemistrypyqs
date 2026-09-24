@@ -12,3 +12,6 @@ extract_pdfs.py
 __pycache__/
 .DS_Store
 answers_out/
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
